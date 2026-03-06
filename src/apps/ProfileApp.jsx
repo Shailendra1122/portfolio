@@ -3,9 +3,9 @@ import profilePic from '../assets/profile.jpg';
 
 export default function ProfileApp() {
   return (
-    <div className="h-full w-full bg-[#c0c0c0] p-4 overflow-y-auto font-sans text-sm pb-10">
-      <div className="flex items-center gap-4 mb-4">
-        <div className="w-20 h-20 bg-white border-2 border-l-gray-500 border-t-gray-500 border-r-white border-b-white border-solid shadow-[inset_2px_2px_gray] overflow-hidden flex items-center justify-center">
+    <div className="h-full w-full bg-slate-50 p-6 overflow-y-auto font-sans text-slate-800 pb-10">
+      <div className="flex items-center gap-6 mb-6">
+        <div className="w-24 h-24 bg-white rounded-full shadow-lg border-4 border-white overflow-hidden flex items-center justify-center shrink-0">
           <img 
             src={profilePic} 
             alt="Avatar" 
@@ -18,12 +18,12 @@ export default function ProfileApp() {
         </div>
       </div>
       
-      <div className="bg-white border-2 border-l-gray-500 border-t-gray-500 border-r-white border-b-white p-2 text-justify">
-        <p className="mb-2">
-          Hi! I'm Shailendra. Welcome to my retro Linux-inspired portfolio.
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-5 text-justify leading-relaxed">
+        <p className="mb-3">
+          Hi! I'm Shailendra. Welcome to my newly upgraded modern portfolio.
         </p>
-        <p className="mb-2">
-          I enjoy building modern web applications with a sprinkle of nostalgia. 
+        <p className="mb-3">
+          I enjoy building modern web applications with a focus on fluid, eye-catching design. 
           I work with a Java Full Stack tech stack including Spring Boot, React, Tailwind CSS, and Node.js to build modern, scalable web applications.
         </p>
         <p>
@@ -31,11 +31,11 @@ export default function ProfileApp() {
         </p>
       </div>
 
-      <div className="mt-4 flex gap-4">
-        <button className="bg-[#c0c0c0] border-2 border-l-white border-t-white border-r-black border-b-black shadow-[inset_1px_1px_#dfdfdf,inset_-1px_-1px_#808080] px-3 py-1 font-bold active:border-l-black active:border-t-black active:border-r-white active:border-b-white active:shadow-[inset_1px_1px_#808080,inset_-1px_-1px_#dfdfdf] active:pt-1 active:pl-1" onClick={() => window.open('https://github.com/Shailendra1122/', '_blank')}>
+      <div className="mt-6 flex gap-4">
+        <button className="bg-slate-800 text-white hover:bg-slate-700 px-5 py-2 rounded-lg font-medium transition-colors shadow-sm" onClick={() => window.open('https://github.com/Shailendra1122/', '_blank')}>
           GitHub
         </button>
-        <button className="bg-[#c0c0c0] border-2 border-l-white border-t-white border-r-black border-b-black shadow-[inset_1px_1px_#dfdfdf,inset_-1px_-1px_#808080] px-3 py-1 font-bold active:border-l-black active:border-t-black active:border-r-white active:border-b-white active:shadow-[inset_1px_1px_#808080,inset_-1px_-1px_#dfdfdf] active:pt-1 active:pl-1" onClick={() => window.open('https://www.linkedin.com/in/shailendra-pratap-singh-067281362/', '_blank')}>
+        <button className="bg-blue-600 text-white hover:bg-blue-700 px-5 py-2 rounded-lg font-medium transition-colors shadow-sm" onClick={() => window.open('https://www.linkedin.com/in/shailendra-pratap-singh-067281362/', '_blank')}>
           LinkedIn
         </button>
       </div>

@@ -66,10 +66,10 @@ export default function Desktop() {
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-[#008080] relative crt-overlay select-none flex flex-col">
+    <div className="h-screen w-screen overflow-hidden bg-slate-950 relative select-none flex flex-col bg-[url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2560&auto=format&fit=crop')] bg-cover bg-center">
       {/* Desktop Area */}
       <div 
-        className="flex-1 relative p-4 flex flex-col flex-wrap gap-2 items-start" 
+        className="flex-1 relative p-4 pt-[60px] flex flex-col flex-wrap gap-2 items-start" 
         onClick={() => setActiveWindowId(null)}
       >
         <DesktopIcon app={APPS_CONFIG.profile} onDoubleClick={() => openApp('profile')} />

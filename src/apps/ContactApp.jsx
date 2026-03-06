@@ -3,38 +3,46 @@ import { Phone, Mail, Linkedin, Github } from 'lucide-react';
 
 export default function ContactApp() {
   return (
-    <div className="h-full w-full bg-[#c0c0c0] p-4 font-sans text-black relative flex flex-col items-center justify-center">
-      <div className="w-full max-w-[300px] border-2 border-l-white border-t-white border-r-gray-500 border-b-gray-500 p-4 bg-white shadow-[inset_1px_1px_#dfdfdf,inset_-1px_-1px_#808080]">
+    <div className="h-full w-full bg-slate-50 p-4 font-sans text-slate-800 relative flex flex-col items-center overflow-y-auto">
+      <div className="w-full max-w-[320px] rounded-2xl p-8 bg-white shadow-xl shadow-slate-200/50 border border-slate-100 my-auto shrink-0">
         
-        <div className="text-center mb-6">
-          <div className="w-16 h-16 bg-blue-900 rounded-full mx-auto mb-2 flex items-center justify-center border-2 border-white shadow-[0_0_0_1px_black]">
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg shadow-blue-600/30">
             <Phone className="text-white" size={24} />
           </div>
-          <h2 className="font-bold text-lg">Contact Me</h2>
-          <p className="text-xs text-gray-600">Let's build something together.</p>
+          <h2 className="font-bold text-2xl mb-1 text-slate-900">Contact Me</h2>
+          <p className="text-sm text-slate-500">Let's build something beautiful together.</p>
         </div>
 
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <Phone size={18} className="text-gray-700" />
-            <a href="tel:+917080692505" className="text-blue-700 underline text-sm hover:text-blue-900 active:text-red-600">+91 7080692505</a>
+        <div className="space-y-5">
+          <div className="flex items-center gap-4">
+            <div className="bg-slate-100 p-2 rounded-lg text-slate-600">
+              <Phone size={20} />
+            </div>
+            <a href="tel:+917080692505" className="text-slate-700 font-medium hover:text-blue-600 transition-colors">+91 7080692505</a>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Mail size={18} className="text-gray-700" />
-            <a href="mailto:shailendraprbns@gmail.com" className="text-blue-700 underline text-sm hover:text-blue-900 active:text-red-600">shailendraprbns@gmail.com</a>
+          <div className="flex items-center gap-4">
+            <div className="bg-slate-100 p-2 rounded-lg text-slate-600">
+              <Mail size={20} />
+            </div>
+            <a href="mailto:shailendraprbns@gmail.com" className="text-slate-700 font-medium hover:text-blue-600 transition-colors">shailendraprbns@gmail.com</a>
           </div>
           
-          <div className="w-full h-[1px] bg-gray-400 my-2"></div>
+          <div className="w-full h-[1px] bg-slate-100 my-4"></div>
 
-          <div className="flex items-center gap-3">
-            <Linkedin size={18} className="text-gray-700" />
-            <a href="https://www.linkedin.com/in/shailendra-pratap-singh-067281362/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm hover:text-blue-900 active:text-red-600">LinkedIn Profile</a>
+          <div className="flex items-center gap-4">
+            <div className="bg-slate-100 p-2 rounded-lg text-slate-600">
+              <Linkedin size={20} />
+            </div>
+            <a href="https://www.linkedin.com/in/shailendra-pratap-singh-067281362/" target="_blank" rel="noopener noreferrer" className="text-slate-700 font-medium hover:text-blue-600 transition-colors">LinkedIn Profile</a>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Github size={18} className="text-gray-700" />
-            <a href="https://github.com/Shailendra1122/" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline text-sm hover:text-blue-900 active:text-red-600">GitHub Profile</a>
+          <div className="flex items-center gap-4">
+            <div className="bg-slate-100 p-2 rounded-lg text-slate-600">
+              <Github size={20} />
+            </div>
+            <a href="https://github.com/Shailendra1122/" target="_blank" rel="noopener noreferrer" className="text-slate-700 font-medium hover:text-blue-600 transition-colors">GitHub Profile</a>
           </div>
         </div>
 

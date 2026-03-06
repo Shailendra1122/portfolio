@@ -16,23 +16,28 @@ export default function Taskbar({ windows, activeWindowId, onAppClick, openApp }
   return (
     <div className={styles.taskbar}>
       <button 
-        className={styles.startButton} 
-        style={menuOpen ? { background: '#dfdfdf', boxShadow: 'inset 1px 1px #808080' } : {}}
+        className={`${styles.startButton} ${menuOpen ? 'bg-white/20' : ''}`}
         onClick={() => setMenuOpen(!menuOpen)}
       >
-        <Menu size={16} /> Applications
+        <Menu size={18} /> Menu
       </button>
 
       {menuOpen && (
-        <div className="absolute left-1 bottom-10 w-48 bg-[#c0c0c0] border-2 border-l-white border-t-white border-r-black border-b-black p-1 z-[10001] shadow-[inset_1px_1px_#dfdfdf,inset_-1px_-1px_#808080]">
-           <div className="flex flex-col gap-1">
-             <div className="px-2 py-1 hover:bg-[#000080] hover:text-white cursor-pointer" onClick={() => { openApp('profile'); setMenuOpen(false); }}>Profile</div>
-             <div className="px-2 py-1 hover:bg-[#000080] hover:text-white cursor-pointer" onClick={() => { openApp('resume'); setMenuOpen(false); }}>Resume</div>
-             <div className="px-2 py-1 hover:bg-[#000080] hover:text-white cursor-pointer" onClick={() => { openApp('education'); setMenuOpen(false); }}>Education</div>
-             <div className="px-2 py-1 hover:bg-[#000080] hover:text-white cursor-pointer" onClick={() => { openApp('contact'); setMenuOpen(false); }}>Contact</div>
-             <div className="px-2 py-1 hover:bg-[#000080] hover:text-white cursor-pointer" onClick={() => { window.open('https://github.com/Shailendra1122/', '_blank'); setMenuOpen(false); }}>GitHub</div>
-             <div className="px-2 py-1 hover:bg-[#000080] hover:text-white cursor-pointer" onClick={() => { window.open('https://www.linkedin.com/in/shailendra-pratap-singh-067281362/', '_blank'); setMenuOpen(false); }}>LinkedIn</div>
-             <div className="px-2 py-1 hover:bg-[#000080] hover:text-white cursor-pointer" onClick={() => { openApp('terminal'); setMenuOpen(false); }}>Terminal Games</div>
+        <div className="absolute left-2 top-11 w-64 bg-slate-900/95 backdrop-blur-xl border border-teal-500/30 p-2 z-[10001] shadow-2xl rounded-xl text-slate-300">
+           <div className="flex flex-col gap-1 text-sm font-medium">
+             <div className="px-3 py-2 hover:bg-white/10 rounded-md cursor-pointer transition-colors" onClick={() => { openApp('profile'); setMenuOpen(false); }}>Profile</div>
+             <div className="px-3 py-2 hover:bg-white/10 rounded-md cursor-pointer transition-colors" onClick={() => { openApp('resume'); setMenuOpen(false); }}>Resume</div>
+             <div className="px-3 py-2 hover:bg-white/10 rounded-md cursor-pointer transition-colors" onClick={() => { openApp('education'); setMenuOpen(false); }}>Education</div>
+             <div className="px-3 py-2 hover:bg-white/10 rounded-md cursor-pointer transition-colors" onClick={() => { openApp('contact'); setMenuOpen(false); }}>Contact</div>
+             <div className="h-[1px] bg-white/10 my-1"></div>
+             <div className="px-3 py-2 hover:bg-white/10 rounded-md cursor-pointer transition-colors flex items-center justify-between" onClick={() => { window.open('https://github.com/Shailendra1122/', '_blank'); setMenuOpen(false); }}>
+               GitHub <span className="text-xs text-slate-400">↗</span>
+             </div>
+             <div className="px-3 py-2 hover:bg-white/10 rounded-md cursor-pointer transition-colors flex items-center justify-between" onClick={() => { window.open('https://www.linkedin.com/in/shailendra-pratap-singh-067281362/', '_blank'); setMenuOpen(false); }}>
+               LinkedIn <span className="text-xs text-slate-400">↗</span>
+             </div>
+             <div className="h-[1px] bg-white/10 my-1"></div>
+             <div className="px-3 py-2 hover:bg-white/10 rounded-md cursor-pointer transition-colors text-emerald-400" onClick={() => { openApp('terminal'); setMenuOpen(false); }}>Terminal Games</div>
            </div>
         </div>
       )}

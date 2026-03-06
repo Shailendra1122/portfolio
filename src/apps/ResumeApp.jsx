@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ResumeApp() {
   return (
-    <div className="h-full w-full bg-white text-black p-4 overflow-y-auto font-serif" style={{ fontFamily: 'Times New Roman, serif' }}>
+    <div className="h-full w-full bg-white/90 backdrop-blur text-black p-4 overflow-y-auto">
       <h1 className="text-2xl font-bold mb-2 text-center border-b-2 border-black pb-2">Shailendra Pratap Singh</h1>
       <div className="text-center text-sm mb-4">
         shailendraprbns@gmail.com | github.com/Shailendra1122 | linkedin.com/in/shailendra-pratap-singh-067281362/

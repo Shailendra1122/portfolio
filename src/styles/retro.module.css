@@ -1,161 +1,170 @@
 .window {
-  background-color: #c0c0c0;
-  border-left: 2px solid #ffffff;
-  border-top: 2px solid #ffffff;
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
-  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
-  padding: 2px;
+  background-color: rgba(11, 15, 25, 0.85); /* deep dark navy/black */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 255, 204, 0.3); /* neon cyan glow */
+  border-radius: 8px; /* Sharper linux edges */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 204, 0.05) inset;
+  padding: 0;
   position: absolute;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  min-width: 300px;
+  min-height: 250px;
+  width: 450px;
+  height: 350px;
 }
 
 .titleBar {
-  background: linear-gradient(to right, #000080, #1084d0);
-  color: white;
-  padding: 2px 4px;
-  font-weight: bold;
+  background: rgba(6, 9, 15, 0.9); /* almost black */
+  color: #00ffcc; /* neon cyan */
+  padding: 8px 12px;
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+  font-family: 'Courier New', monospace; /* Hackerman font */
+  font-size: 13px;
 }
 
 .titleBarInactive {
-  background: #808080;
-  color: #c0c0c0;
-  padding: 2px 4px;
-  font-weight: bold;
+  background: rgba(10, 15, 25, 0.6);
+  color: #64748b;
+  padding: 8px 12px;
+  font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
 }
 
 .titleBarText {
-  font-size: 12px;
-  letter-spacing: 0.5px;
   cursor: default;
+  letter-spacing: 0.5px;
 }
 
 .button {
-  background-color: #c0c0c0;
-  border-left: 1px solid #ffffff;
-  border-top: 1px solid #ffffff;
-  border-right: 1px solid #000000;
-  border-bottom: 1px solid #000000;
-  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
-  color: black;
-  font-size: 10px;
-  min-width: 16px;
-  min-height: 16px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: none;
+  margin-left: 8px; /* Moved to left for right-aligned layout */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-left: 2px;
+  color: transparent;
+  transition: all 0.2s;
+  background-color: #334155; /* Default inactive */
 }
 
-.button:active {
-  border-left: 1px solid #000000;
-  border-top: 1px solid #000000;
-  border-right: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
-  box-shadow: inset 1px 1px #808080, inset -1px -1px #dfdfdf;
-  padding: 1px 0 0 1px; /* visual push */
+/* Linux / Cyber Window Controls */
+.btnClose:hover { background-color: #ef4444; color: white; }
+.btnMinimize:hover { background-color: #3b82f6; color: white; }
+.btnMaximize:hover { background-color: #10b981; color: white; }
+
+.button:hover {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
 .taskbar {
-  background-color: #c0c0c0;
-  border-top: 2px solid #ffffff;
-  box-shadow: inset 1px 1px #dfdfdf;
+  background-color: rgba(6, 9, 15, 0.85); /* Dark top bar */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 255, 204, 0.3); /* Neon lower border */
   display: flex;
   align-items: center;
-  padding: 2px 4px;
-  height: 38px;
+  padding: 4px 16px;
+  height: 40px;
   width: 100%;
   position: absolute;
-  bottom: 0;
+  top: 0; /* Moving taskbar to top GNOME-style! */
   z-index: 10000;
 }
 
 .taskbarButton {
-  background-color: #c0c0c0;
-  border-left: 2px solid #ffffff;
-  border-top: 2px solid #ffffff;
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
-  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
-  padding: 4px 8px;
+  background-color: transparent;
+  border: none;
+  padding: 6px 12px;
   margin-right: 4px;
-  font-weight: bold;
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-weight: 500;
   font-size: 13px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
   max-width: 150px;
+  transition: all 0.2s;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+.taskbarButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .taskbarButtonActive {
-  background-color: #dfdfdf;
-  border-left: 2px solid #000000;
-  border-top: 2px solid #000000;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  box-shadow: inset 1px 1px #808080, inset -1px -1px #dfdfdf;
-  background-image: repeating-linear-gradient(45deg, #dfdfdf 25%, transparent 25%, transparent 75%, #dfdfdf 75%, #dfdfdf), repeating-linear-gradient(45deg, #dfdfdf 25%, #c0c0c0 25%, #c0c0c0 75%, #dfdfdf 75%, #dfdfdf);
-  background-position: 0 0, 1px 1px;
-  background-size: 2px 2px;
+  background-color: rgba(0, 255, 204, 0.1);
+  border: none;
+  border-bottom: 2px solid #00ffcc;
+  padding: 4px 12px;
+  margin-right: 4px;
+  border-radius: 4px;
+  color: #00ffcc;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
 .startButton {
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 2px 6px;
-  font-weight: bold;
-  font-style: italic;
-  margin-right: 12px;
-  background-color: #c0c0c0;
-  border-left: 2px solid #ffffff;
-  border-top: 2px solid #ffffff;
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
-  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+  gap: 6px;
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  margin-right: 16px;
+  background-color: transparent;
+  color: white;
+  border: none;
   cursor: pointer;
+  transition: all 0.2s;
 }
-.startButton:active {
-  border-left: 2px solid #000000;
-  border-top: 2px solid #000000;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  box-shadow: inset 1px 1px #808080, inset -1px -1px #dfdfdf;
-  padding: 3px 6px 1px 6px; 
+.startButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .clock {
   margin-left: auto;
   padding: 4px 8px;
-  border-left: 2px solid #808080;
-  border-top: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  background-color: #c0c0c0;
+  color: #00ffcc;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
   font-size: 13px;
   display: flex;
   align-items: center;
+  text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
 }
 
 .inset {
-  border-left: 2px solid #808080;
-  border-top: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-  background-color: #ffffff;
-  color: black;
+  background-color: rgba(2, 6, 23, 0.85); /* super dark inner */
   height: 100%;
   width: 100%;
+  flex: 1;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  color: #e2e8f0; /* Default text to very light grey */
 }
 
 .desktopIcon {
@@ -163,25 +172,36 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 80px;
+  width: 76px;
+  height: 84px;
   color: white;
   cursor: pointer;
   margin-bottom: 12px;
   text-align: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.desktopIcon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .iconText {
-  margin-top: 4px;
-  padding: 2px;
-  font-size: 12px;
-  text-shadow: 1px 1px 0 #000;
+  margin-top: 6px;
+  padding: 2px 4px;
+  font-size: 13px;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
 }
 
 .iconTextSelected {
-  background-color: #000080;
-  border: 1px dotted white;
-  margin-top: 4px;
-  padding: 1px;
-  font-size: 12px;
+  background-color: rgba(0, 255, 204, 0.2);
+  border: 1px solid rgba(0, 255, 204, 0.5);
+  margin-top: 6px;
+  padding: 1px 3px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  color: #00ffcc;
 }

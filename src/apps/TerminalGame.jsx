@@ -6,7 +6,7 @@ import BrickBreaker from './BrickBreaker';
 export default function TerminalGame() {
   const [mode, setMode] = useState('cli'); // 'cli', 'snake', 'brick'
   const [output, setOutput] = useState([
-    "Terminal OS v2.0.0",
+    "Terminal v3.0 // zsh",
     "Available Games:",
     "  [1] snake - Retro Snake Game",
     "  [2] brick - Brick Breaker",

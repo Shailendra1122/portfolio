@@ -23,7 +23,7 @@ export default function EducationApp() {
   ];
 
   return (
-    <div className="h-full w-full bg-white text-black p-4 overflow-y-auto font-serif" style={{ fontFamily: 'Times New Roman, serif' }}>
+    <div className="h-full w-full bg-white/90 backdrop-blur text-black p-4 overflow-y-auto">
       <h1 className="text-2xl font-bold mb-4 text-center border-b-2 border-black pb-2">Education Timeline</h1>
       
       <div className="relative border-l-2 border-gray-400 ml-3 pl-4">
