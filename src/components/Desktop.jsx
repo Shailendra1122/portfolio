@@ -4,13 +4,17 @@ import DesktopIcon from './DesktopIcon';
 import Window from './Window';
 import ProfileApp from '../apps/ProfileApp';
 import ResumeApp from '../apps/ResumeApp';
+import EducationApp from '../apps/EducationApp';
+import ContactApp from '../apps/ContactApp';
 import TerminalGame from '../apps/TerminalGame';
 
-import { User, FileText, Terminal } from 'lucide-react';
+import { User, FileText, Terminal, GraduationCap, PhoneOutgoing, Github, Linkedin } from 'lucide-react';
 
 const APPS_CONFIG = {
   profile: { id: 'profile', title: 'Profile', icon: User, Component: ProfileApp },
   resume: { id: 'resume', title: 'Resume', icon: FileText, Component: ResumeApp },
+  education: { id: 'education', title: 'Education', icon: GraduationCap, Component: EducationApp },
+  contact: { id: 'contact', title: 'Contact', icon: PhoneOutgoing, Component: ContactApp },
   terminal: { id: 'terminal', title: 'Terminal Games', icon: Terminal, Component: TerminalGame },
 };
 
@@ -70,6 +74,10 @@ export default function Desktop() {
       >
         <DesktopIcon app={APPS_CONFIG.profile} onDoubleClick={() => openApp('profile')} />
         <DesktopIcon app={APPS_CONFIG.resume} onDoubleClick={() => openApp('resume')} />
+        <DesktopIcon app={APPS_CONFIG.education} onDoubleClick={() => openApp('education')} />
+        <DesktopIcon app={APPS_CONFIG.contact} onDoubleClick={() => openApp('contact')} />
+        <DesktopIcon app={{ title: 'GitHub', icon: Github }} onDoubleClick={() => window.open('https://github.com/Shailendra1122/', '_blank')} />
+        <DesktopIcon app={{ title: 'LinkedIn', icon: Linkedin }} onDoubleClick={() => window.open('https://www.linkedin.com/in/shailendra-pratap-singh-067281362/', '_blank')} />
         <DesktopIcon app={APPS_CONFIG.terminal} onDoubleClick={() => openApp('terminal')} />
 
         {/* Render Windows */}

@@ -32,7 +32,7 @@ export default function ProfileApp() {
       </div>
 
       <div className="mt-4 flex gap-4">
-        <button className="bg-[#c0c0c0] border-2 border-l-white border-t-white border-r-black border-b-black shadow-[inset_1px_1px_#dfdfdf,inset_-1px_-1px_#808080] px-3 py-1 font-bold active:border-l-black active:border-t-black active:border-r-white active:border-b-white active:shadow-[inset_1px_1px_#808080,inset_-1px_-1px_#dfdfdf] active:pt-1 active:pl-1" onClick={() => window.open('https://github.com/Shailendra2211', '_blank')}>
+        <button className="bg-[#c0c0c0] border-2 border-l-white border-t-white border-r-black border-b-black shadow-[inset_1px_1px_#dfdfdf,inset_-1px_-1px_#808080] px-3 py-1 font-bold active:border-l-black active:border-t-black active:border-r-white active:border-b-white active:shadow-[inset_1px_1px_#808080,inset_-1px_-1px_#dfdfdf] active:pt-1 active:pl-1" onClick={() => window.open('https://github.com/Shailendra1122/', '_blank')}>
           GitHub
         </button>
         <button className="bg-[#c0c0c0] border-2 border-l-white border-t-white border-r-black border-b-black shadow-[inset_1px_1px_#dfdfdf,inset_-1px_-1px_#808080] px-3 py-1 font-bold active:border-l-black active:border-t-black active:border-r-white active:border-b-white active:shadow-[inset_1px_1px_#808080,inset_-1px_-1px_#dfdfdf] active:pt-1 active:pl-1" onClick={() => window.open('https://www.linkedin.com/in/shailendra-pratap-singh-067281362/', '_blank')}>

@@ -32,7 +32,7 @@ const Hero = () => {
           
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://github.com/Shailendra2211"
+              href="https://github.com/Shailendra1122/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg transition-colors border border-slate-700"

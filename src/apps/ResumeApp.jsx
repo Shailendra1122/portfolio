@@ -5,7 +5,7 @@ export default function ResumeApp() {
     <div className="h-full w-full bg-white text-black p-4 overflow-y-auto font-serif" style={{ fontFamily: 'Times New Roman, serif' }}>
       <h1 className="text-2xl font-bold mb-2 text-center border-b-2 border-black pb-2">Shailendra Pratap Singh</h1>
       <div className="text-center text-sm mb-4">
-        shailendraprbns@gmail.com | github.com/Shailendra2211 | linkedin.com/in/shailendra-pratap-singh-067281362/
+        shailendraprbns@gmail.com | github.com/Shailendra1122 | linkedin.com/in/shailendra-pratap-singh-067281362/
       </div>
 
       <div className="mb-4">

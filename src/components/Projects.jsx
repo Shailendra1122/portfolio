@@ -11,7 +11,7 @@ const projects = [
       "Transaction validation with JPA"
     ],
     tech: ["Java", "Spring Boot", "Kafka", "JPA", "SQL"],
-    github: "https://github.com/Shailendra2211", // Placeholder link based on profile
+    github: "https://github.com/Shailendra1122", // Placeholder link based on profile
   },
   {
     title: "CoLab Connect",
@@ -22,7 +22,7 @@ const projects = [
       "Minimalist accessible UI using Tailwind"
     ],
     tech: ["Node.js", "Express", "MongoDB", "Tailwind"],
-    github: "https://github.com/Shailendra2211",
+    github: "https://github.com/Shailendra1122",
   },
   {
     title: "Booking Management System",
@@ -33,7 +33,7 @@ const projects = [
       "Responsive UI using Bootstrap"
     ],
     tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
-    github: "https://github.com/Shailendra2211",
+    github: "https://github.com/Shailendra1122",
   }
 ];
 
