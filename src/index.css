@@ -1,23 +1,39 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #3b82f6;
-  --color-primary-foreground: #ffffff;
-  --color-background: #0f172a;
-  --color-foreground: #f8fafc;
+@font-face {
+  font-family: "MS Sans Serif";
+  src: local("MS Sans Serif"), local("Arial");
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif;
-  overflow-x: hidden;
+  font-family: "MS Sans Serif", "Courier New", monospace;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* Make text generally not selectable to feel like an OS */
+  user-select: none;
 }
 
-html {
-  scroll-behavior: smooth;
+/* CRT Scanline Effect */
+.crt-overlay::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.02),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 0, 255, 0.02)
+    );
+  z-index: 1000;
+  background-size:
+    100% 2px,
+    3px 100%;
+  pointer-events: none;
 }

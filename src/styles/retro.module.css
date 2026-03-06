@@ -1,0 +1,187 @@
+.window {
+  background-color: #c0c0c0;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+  padding: 2px;
+  position: absolute;
+}
+
+.titleBar {
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: white;
+  padding: 2px 4px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleBarInactive {
+  background: #808080;
+  color: #c0c0c0;
+  padding: 2px 4px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleBarText {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  cursor: default;
+}
+
+.button {
+  background-color: #c0c0c0;
+  border-left: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+  color: black;
+  font-size: 10px;
+  min-width: 16px;
+  min-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+.button:active {
+  border-left: 1px solid #000000;
+  border-top: 1px solid #000000;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #dfdfdf;
+  padding: 1px 0 0 1px; /* visual push */
+}
+
+.taskbar {
+  background-color: #c0c0c0;
+  border-top: 2px solid #ffffff;
+  box-shadow: inset 1px 1px #dfdfdf;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  height: 38px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 10000;
+}
+
+.taskbarButton {
+  background-color: #c0c0c0;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+  padding: 4px 8px;
+  margin-right: 4px;
+  font-weight: bold;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskbarButtonActive {
+  background-color: #dfdfdf;
+  border-left: 2px solid #000000;
+  border-top: 2px solid #000000;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #dfdfdf;
+  background-image: repeating-linear-gradient(45deg, #dfdfdf 25%, transparent 25%, transparent 75%, #dfdfdf 75%, #dfdfdf), repeating-linear-gradient(45deg, #dfdfdf 25%, #c0c0c0 25%, #c0c0c0 75%, #dfdfdf 75%, #dfdfdf);
+  background-position: 0 0, 1px 1px;
+  background-size: 2px 2px;
+}
+
+.startButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  font-weight: bold;
+  font-style: italic;
+  margin-right: 12px;
+  background-color: #c0c0c0;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+  cursor: pointer;
+}
+.startButton:active {
+  border-left: 2px solid #000000;
+  border-top: 2px solid #000000;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: inset 1px 1px #808080, inset -1px -1px #dfdfdf;
+  padding: 3px 6px 1px 6px; 
+}
+
+.clock {
+  margin-left: auto;
+  padding: 4px 8px;
+  border-left: 2px solid #808080;
+  border-top: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  background-color: #c0c0c0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.inset {
+  border-left: 2px solid #808080;
+  border-top: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  background-color: #ffffff;
+  color: black;
+  height: 100%;
+  width: 100%;
+}
+
+.desktopIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 80px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.iconText {
+  margin-top: 4px;
+  padding: 2px;
+  font-size: 12px;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.iconTextSelected {
+  background-color: #000080;
+  border: 1px dotted white;
+  margin-top: 4px;
+  padding: 1px;
+  font-size: 12px;
+}

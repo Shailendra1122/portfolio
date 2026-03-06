@@ -38,7 +38,7 @@ const Contact = () => {
 
             <div className="flex gap-4 pt-4">
               <a
-                href="https://github.com/Shailendra1122"
+                href="https://github.com/Shailendra2211"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-slate-700 hover:text-white transition-colors"
