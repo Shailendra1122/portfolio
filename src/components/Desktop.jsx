@@ -99,6 +99,31 @@ export default function Desktop() {
             </Window>
           );
         })}
+
+        {/* Floating Welcome Widget (Conky / Terminal style) */}
+        <div className="absolute right-8 top-24 w-80 text-[#00ffcc] font-mono text-xs pointer-events-none hidden md:block select-none drop-shadow-[0_0_8px_rgba(0,255,204,0.3)] bg-slate-900/60 p-6 rounded-lg border border-[#00ffcc]/20 backdrop-blur-md">
+          <pre className="opacity-80 leading-tight mb-4 text-[#00ffcc]">
+{`   _____ __  _____    _ __ 
+  / ___// / / /   |  (_) / 
+  \\__ \\/ /_/ / /| | / / /  
+ ___/ / __  / ___ |/ / /___
+/____/_/ /_/_/  |_/_/_____/`}
+          </pre>
+          <div className="opacity-90 space-y-1">
+            <p>&gt; SYSTEM_READY...</p>
+            <p>&gt; USER_LOGGED_IN: <span className="text-white font-bold">Shailendra Pratap Singh</span></p>
+            <p>&gt; ROLE: <span className="text-white">Java Full Stack Developer</span></p>
+            <div className="w-full h-[1px] bg-[#00ffcc]/30 my-3"></div>
+            <p className="text-slate-300 leading-relaxed">
+              Welcome to my digital workspace! Feel free to explore the files and applications on this desktop to learn more about my skills, projects, and professional journey.
+            </p>
+            <div className="w-full h-[1px] bg-[#00ffcc]/30 my-3"></div>
+            <p className="text-emerald-400 animate-pulse font-bold flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block shadow-[0_0_8px_#34d399]"></span>
+              STATUS: ONLINE
+            </p>
+          </div>
+        </div>
       </div>
 
       <Taskbar 
