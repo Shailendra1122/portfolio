@@ -1,58 +1,125 @@
-# Shailendra Pratap Singh - Portfolio
+# 🖥️ Shailendra Pratap Singh – Portfolio
 
-A modern, interactive, Linux-inspired Desktop/Terminal theme portfolio built with React and Tailwind CSS. It features a unique, desktop-like interface where sections of the portfolio are represented as draggable, resizable windows, along with mini-games in a retro terminal application.
+A modern, interactive **Linux-inspired desktop portfolio** built with **React + Tailwind CSS**.  
+The portfolio simulates a desktop environment where different sections appear as draggable and resizable application windows, along with retro terminal games for an engaging user experience.
+
+### 🌐 [Live Demo](https://portfolio-three-alpha-7o16rmcq87.vercel.app/)
+
+---
 
 ## 🚀 Features
 
-- **Linux Cyberpunk UI**: A dynamic and immersive desktop layout with a custom taskbar, desktop icons, and interactive application windows.
-- **Interactive Apps**: Information is divided into logical "applications":
-  - **Profile**: Introduction and personal info.
-  - **Education**: Timeline of academic journey.
-  - **Resume**: Technical skills and career info.
-  - **Contact**: Reach out easily.
-  - **Terminal Games**: Includes a CLI, Retro Snake game, and Brick Breaker directly in your browser.
-- **Responsive Design**: Adapts beautifully to both desktop and mobile screens.
-- **Smooth Animations**: Window opening/closing handled seamlessly.
+### 🧑‍💻 Linux-Style Desktop Interface
+
+- Desktop layout inspired by **Linux / Cyberpunk UI**
+- Custom taskbar, desktop icons, and application windows
+- Draggable and resizable windows
+
+### 📂 Interactive Applications
+
+The portfolio is divided into different "apps":
+
+| App           | Description                                           |
+| ------------- | ----------------------------------------------------- |
+| **Profile**   | Personal introduction & background information        |
+| **Education** | Academic timeline, certifications & coursework        |
+| **Resume**    | Technical skills & career experience                  |
+| **Contact**   | Easy ways to connect                                  |
+| **Terminal**  | Command-line inspired interface with retro mini games |
+
+### 🎮 Built-in Terminal Games
+
+- 🐍 Snake Game
+- 🧱 Brick Breaker
+- 💻 CLI-style interactions inside the browser
+
+### 📱 Responsive Design
+
+- Works smoothly on desktop and mobile devices
+
+### ✨ Smooth Animations
+
+- Window open/close animations
+- Interactive UI powered by modern animation libraries
+
+---
 
 ## 💻 Tech Stack
 
-- **Framework**: React (using Vite)
-- **Styling**: Tailwind CSS
-- **Icons**: Lucide React
-- **Animations / Interactions**: Framer Motion, React Draggable
+| Technology          | Usage                         |
+| ------------------- | ----------------------------- |
+| **React** (Vite)    | Frontend Framework            |
+| **Tailwind CSS**    | Styling                       |
+| **Framer Motion**   | Animations                    |
+| **React Draggable** | Window dragging functionality |
+| **Lucide React**    | Icons                         |
+
+---
 
 ## 📂 Project Structure
 
-- `src/apps/` - Contains the individual application components (Profile, Resume, Terminal Games, etc.)
-- `src/components/` - Contains core UI components like Desktop, Taskbar, Windows, and Icons.
+```
+src/
+├── apps/
+│   ├── Profile
+│   ├── Education
+│   ├── Resume
+│   ├── Contact
+│   └── TerminalGames
+│
+├── components/
+│   ├── Desktop
+│   ├── Taskbar
+│   ├── Window
+│   └── Icons
+│
+└── App.jsx
+```
 
-## 🛠️ Setup & Execution
+- `src/apps/` → Individual applications inside the desktop environment
+- `src/components/` → Core UI elements like taskbar, windows, and desktop layout
+
+---
+
+## ⚙️ Setup & Installation
 
 ### Prerequisites
 
-Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+Make sure you have installed:
 
-### Installation
+- [Node.js](https://nodejs.org/) (includes npm)
 
-1. Clone this repository (or download the source).
-2. Open a terminal in the project directory.
-3. Run the following command to install dependencies:
+### 🛠 Installation
 
-```bash
-npm install
-```
+1. **Clone the repository:**
 
-### Running the Project Locally
+   ```bash
+   git clone https://github.com/Shailendra1122/portfolio.git
+   ```
 
-Start the Vite development server:
+2. **Navigate into the project folder:**
+
+   ```bash
+   cd portfolio
+   ```
+
+3. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+### ▶️ Run Locally
+
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Open [https://portfolio-three-alpha-7o16rmcq87.vercel.app/](https://portfolio-three-alpha-7o16rmcq87.vercel.app/) in your browser to view the portfolio.
+Open the browser and go to: [http://localhost:5173](http://localhost:5173)
 
-### Building for Production
+### 📦 Build for Production
 
 To create an optimized production build:
 
@@ -60,4 +127,18 @@ To create an optimized production build:
 npm run build
 ```
 
-This will create a `dist` folder with the necessary static files to be deployed.
+This will generate a `dist/` folder containing static files ready for deployment.
+
+---
+
+## 📬 Contact
+
+**Shailendra Pratap Singh**
+
+- 🐙 GitHub: [Shailendra1122](https://github.com/Shailendra1122)
+- 💼 LinkedIn: _(Add your LinkedIn here)_
+- 📧 Email: _(Add your email here)_
+
+---
+
+⭐ **If you like this project, feel free to star the repository!**
