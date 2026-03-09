@@ -8,7 +8,7 @@ import EducationApp from '../apps/EducationApp';
 import ContactApp from '../apps/ContactApp';
 import TerminalGame from '../apps/TerminalGame';
 
-import { User, FileText, Terminal, GraduationCap, PhoneOutgoing, Github, Linkedin } from 'lucide-react';
+import { User, FileText, Terminal, GraduationCap, PhoneOutgoing, Github, Linkedin, Mail } from 'lucide-react';
 
 const APPS_CONFIG = {
   profile: { id: 'profile', title: 'Profile', icon: User, Component: ProfileApp },
@@ -175,6 +175,23 @@ export default function Desktop() {
             </div>
           </div>
         )}
+
+        {/* Floating Mail Button — right side */}
+        <a
+          href="mailto:shailendraprbns@gmail.com"
+          title="Mail Me"
+          className="group fixed right-5 top-1/2 -translate-y-1/2 z-[9999] flex items-center"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Tooltip */}
+          <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-[#00ffcc]/20 text-[#00ffcc] text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none shadow-lg">
+            Mail Me
+          </span>
+          {/* Button */}
+          <div className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-[#00ffcc]/30 flex items-center justify-center text-[#00ffcc] shadow-[0_0_20px_rgba(0,255,204,0.15)] hover:shadow-[0_0_30px_rgba(0,255,204,0.35)] hover:border-[#00ffcc]/60 hover:scale-110 transition-all duration-300 cursor-pointer">
+            <Mail size={20} />
+          </div>
+        </a>
 
       </div>
 
