@@ -6,6 +6,17 @@ import styles from '../styles/retro.module.css';
 export default function Window({ title, children, isActive, onFocus, onClose, onMinimize, zIndex, appId }) {
   const controls = useDragControls();
 
+  // Better cascading positions
+  const positions = {
+    profile: { top: 30, left: 100 },
+    resume: { top: 40, left: 140 },
+    education: { top: 50, left: 180 },
+    contact: { top: 60, left: 220 },
+    terminal: { top: 35, left: 160 },
+  };
+
+  const pos = positions[appId] || { top: 40, left: 120 };
+
   return (
     <motion.div
       drag
@@ -15,16 +26,14 @@ export default function Window({ title, children, isActive, onFocus, onClose, on
       className={styles.window}
       style={{
         zIndex,
-        // Start cascading position based on appId hash or simple random so they don't overlap perfectly
-        // (Just a simple deterministic random)
-        top: 20 + ((appId.length * 10) % 50),
-        left: 20 + ((appId.length * 20) % 100),
+        top: pos.top,
+        left: pos.left,
       }}
-      initial={{ scale: 0.9, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.9, opacity: 0 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-      onPointerDown={(e) => onFocus()}
+      initial={{ scale: 0.92, opacity: 0, y: 20 }}
+      animate={{ scale: 1, opacity: 1, y: 0 }}
+      exit={{ scale: 0.92, opacity: 0, y: 20 }}
+      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+      onPointerDown={() => onFocus()}
     >
       <div 
         className={isActive ? styles.titleBar : styles.titleBarInactive} 

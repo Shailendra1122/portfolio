@@ -1,16 +1,63 @@
-# React + Vite
+# Shailendra Pratap Singh - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive, Linux-inspired Desktop/Terminal theme portfolio built with React and Tailwind CSS. It features a unique, desktop-like interface where sections of the portfolio are represented as draggable, resizable windows, along with mini-games in a retro terminal application.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Linux Cyberpunk UI**: A dynamic and immersive desktop layout with a custom taskbar, desktop icons, and interactive application windows.
+- **Interactive Apps**: Information is divided into logical "applications":
+  - **Profile**: Introduction and personal info.
+  - **Education**: Timeline of academic journey.
+  - **Resume**: Technical skills and career info.
+  - **Contact**: Reach out easily.
+  - **Terminal Games**: Includes a CLI, Retro Snake game, and Brick Breaker directly in your browser.
+- **Responsive Design**: Adapts beautifully to both desktop and mobile screens.
+- **Smooth Animations**: Window opening/closing handled seamlessly.
 
-## React Compiler
+## 💻 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React (using Vite)
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Animations / Interactions**: Framer Motion, React Draggable
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/apps/` - Contains the individual application components (Profile, Resume, Terminal Games, etc.)
+- `src/components/` - Contains core UI components like Desktop, Taskbar, Windows, and Icons.
+
+## 🛠️ Setup & Execution
+
+### Prerequisites
+
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### Installation
+
+1. Clone this repository (or download the source).
+2. Open a terminal in the project directory.
+3. Run the following command to install dependencies:
+
+```bash
+npm install
+```
+
+### Running the Project Locally
+
+Start the Vite development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the portfolio.
+
+### Building for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
+```
+
+This will create a `dist` folder with the necessary static files to be deployed.
