@@ -3,6 +3,28 @@ import { Github, ExternalLink, Code } from "lucide-react";
 
 const projects = [
   {
+    title: "JobQuest — Job Application Tracker",
+    description: "Full-stack job application tracking system with REST APIs, MVC architecture, and a Kanban workflow.",
+    points: [
+      "REST APIs & MVC architecture",
+      "Kanban workflow tracking",
+      "Analytics dashboard & file uploads"
+    ],
+    tech: ["Spring Boot", "Java", "SQLite", "Thymeleaf", "Bootstrap"],
+    github: "https://github.com/Shailendra1122",
+  },
+  {
+    title: "KrishiSeva — AI-Driven Agri-Tech",
+    description: "Smart agriculture platform for crop disease detection and soil intelligence with ML models.",
+    points: [
+      "Crop disease detection with FastAPI & React",
+      "ML models for crop recommendation",
+      "Real-time farmer interaction interface"
+    ],
+    tech: ["FastAPI", "React", "Python", "ML"],
+    github: "https://github.com/Shailendra1122",
+  },
+  {
     title: "JPMorganChase Software Engineering Simulation",
     description: "Integrated Kafka with Spring Boot microservices and implemented transaction validation using JPA & H2.",
     points: [
@@ -11,7 +33,7 @@ const projects = [
       "Transaction validation with JPA"
     ],
     tech: ["Java", "Spring Boot", "Kafka", "JPA", "SQL"],
-    github: "https://github.com/Shailendra1122", // Placeholder link based on profile
+    github: "https://github.com/Shailendra1122",
   },
   {
     title: "CoLab Connect",

@@ -3,7 +3,7 @@ import profilePic from '../assets/profile.jpg';
 import { Github, Linkedin, MapPin, Briefcase, Code2, ExternalLink } from 'lucide-react';
 
 export default function ProfileApp() {
-  const skills = ['C', 'C++', 'Java', 'Python', 'JavaScript', 'React', 'Next.js', 'Vue.js', 'Node.js', 'Express', 'FastAPI', 'Spring Boot', 'Tailwind CSS', 'MongoDB', 'Flutter', 'TensorFlow'];
+  const skills = ['C', 'C++', 'Java', 'Python', 'HTML/CSS', 'JavaScript', 'React', 'Next.js', 'Vue.js', 'Node.js', 'Express', 'Spring Boot', 'Tailwind CSS', 'Bootstrap', 'MongoDB', 'SQLite', 'TensorFlow', 'Flutter'];
 
   return (
     <div className="h-full w-full bg-gradient-to-b from-[#0b0f19] to-[#111827] p-6 overflow-y-auto font-sans text-slate-200">
@@ -34,8 +34,7 @@ export default function ProfileApp() {
           <Code2 size={14} /> About
         </h3>
         <p className="text-slate-300 text-sm leading-relaxed mb-3">
-          Results-driven Computer Science and Engineering student seeking opportunities to leverage self-taught full-stack development
-          skills and a passion for creating things that live on the internet.
+          Backend-focused Computer Science student skilled in Java and Spring Boot, passionate about building scalable REST APIs and efficient software systems.
         </p>
         <p className="text-slate-300 text-sm leading-relaxed">
           I work with <span className="text-[#00ffcc]">React</span>, <span className="text-[#00ffcc]">Next.js</span>, <span className="text-[#00ffcc]">Node.js</span>, <span className="text-[#00ffcc]">FastAPI</span>, and <span className="text-[#00ffcc]">Spring Boot</span> for web,

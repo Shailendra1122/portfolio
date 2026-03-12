@@ -6,11 +6,11 @@ export default function ResumeApp() {
   const [view, setView] = useState('styled'); // 'styled' or 'pdf'
 
   const skills = {
-    'Languages': ['C', 'C++', 'Java', 'Python', 'JavaScript', 'HTML/CSS'],
+    'Languages': ['C', 'C++', 'Java', 'Python', 'HTML/CSS', 'JavaScript'],
     'Web Dev': ['Next.js (React)', 'Vue.js', 'Tailwind CSS', 'Bootstrap', 'Node.js', 'Express'],
     'Databases': ['Firestore', 'MongoDB', 'Hygraph CMS', 'SQLite'],
     'Data Science': ['TensorFlow', 'Keras', 'NumPy', 'Pandas', 'Matplotlib'],
-    'Dev Tools': ['Git', 'GitHub', 'VS Code', 'Netlify', 'DigitalOcean', 'Vercel'],
+    'Dev Tools': ['Git', 'GitHub', 'VS Code', 'Eclipse', 'Vercel'],
     'Other Skills': ['Flutter', 'Cryptography', 'GCP', 'Linux', 'Ethical Hacking']
   };
 
@@ -82,7 +82,7 @@ export default function ResumeApp() {
               <span className="flex items-center gap-1"><MapPin size={11} /> KP1, KIIT, Bhubaneswar, Odisha</span>
             </div>
             <p className="text-xs text-slate-400 mt-3 max-w-lg mx-auto leading-relaxed">
-              Results-driven Computer Science and Engineering student seeking opportunities to leverage self-taught full-stack development skills and a passion for creating things that live on the internet.
+              Backend-focused Computer Science student skilled in Java and Spring Boot, passionate about building scalable REST APIs and efficient software systems.
             </p>
           </div>
 
@@ -117,6 +117,32 @@ export default function ResumeApp() {
 
             <div className="space-y-3">
               
+              {/* JobQuest */}
+              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="font-semibold text-white text-sm">JobQuest — Job Application Tracker</h3>
+                    <a href="https://jobquest-gqlq.onrender.com" target="_blank" rel="noopener noreferrer" className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors">
+                      Live ↗
+                    </a>
+                  </div>
+                  <a href="https://github.com/Shailendra1122" target="_blank" rel="noopener noreferrer" className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 shrink-0 hover:text-white transition-colors">GitHub</a>
+                </div>
+                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed">
+                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Built a full-stack job application tracking system with REST APIs and MVC architecture.</li>
+                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Implemented Kanban workflow to track application stages (Applied → Interview → Offer).</li>
+                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Developed analytics dashboard for tracking application trends and status distribution.</li>
+                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Integrated file uploads for resumes and cover letters.</li>
+                </ul>
+                <div className="flex gap-2 mt-2 flex-wrap">
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">Spring Boot</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">Java</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">SQLite</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Thymeleaf</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Bootstrap</span>
+                </div>
+              </div>
+              
               {/* JPMorgan */}
               <div className="bg-white/5 rounded-lg border border-white/10 p-4">
                 <div className="flex items-start justify-between gap-2 mb-2">
@@ -137,7 +163,8 @@ export default function ResumeApp() {
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">Java</span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">Spring Boot</span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Kafka</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">H2 SQL</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Spring Data JPA</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">H2 SQL</span>
                 </div>
               </div>
 
