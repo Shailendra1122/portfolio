@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, Mail, Github, Linkedin, FileText, Eye, MapPin } from 'lucide-react';
+import { Download, Mail, Github, Linkedin, FileText, Eye, MapPin, Sparkles } from 'lucide-react';
 import resumePdf from '../assets/RESUME.pdf';
 
 export default function ResumeApp() {
@@ -15,90 +15,97 @@ export default function ResumeApp() {
   };
 
   return (
-    <div className="h-full w-full bg-gradient-to-b from-[#0b0f19] to-[#111827] text-slate-200 flex flex-col font-sans">
+    <div className="h-full w-full bg-slate-950 text-slate-200 flex flex-col font-sans">
       
-      {/* Top toolbar with view toggle and download */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 bg-white/[0.03] shrink-0">
-        <div className="flex items-center gap-1 bg-white/5 rounded-lg p-0.5">
+      {/* Dynamic view toggles & download actions */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/10 bg-slate-900/40 backdrop-blur-md shrink-0">
+        <div className="flex items-center gap-1 bg-white/5 rounded-lg p-0.5 font-mono text-[10px]">
           <button
             onClick={() => setView('styled')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer ${
               view === 'styled'
-                ? 'bg-[#00ffcc]/15 text-[#00ffcc] border border-[#00ffcc]/30'
+                ? 'bg-cyber-cyan/15 text-cyber-cyan border border-cyber-cyan/20 shadow-[0_0_8px_rgba(0,255,204,0.15)]'
                 : 'text-slate-400 hover:text-slate-200 border border-transparent'
             }`}
           >
-            <FileText size={12} /> Overview
+            <FileText size={11} /> OVERVIEW
           </button>
           <button
             onClick={() => setView('pdf')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer ${
               view === 'pdf'
-                ? 'bg-[#00ffcc]/15 text-[#00ffcc] border border-[#00ffcc]/30'
+                ? 'bg-cyber-cyan/15 text-cyber-cyan border border-cyber-cyan/20 shadow-[0_0_8px_rgba(0,255,204,0.15)]'
                 : 'text-slate-400 hover:text-slate-200 border border-transparent'
             }`}
           >
-            <Eye size={12} /> View PDF
+            <Eye size={11} /> PDF_VIEW
           </button>
         </div>
 
         <a
           href={resumePdf}
           download="Shailendra_Pratap_Singh_Resume.pdf"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#00ffcc]/10 border border-[#00ffcc]/30 text-[#00ffcc] text-xs font-medium hover:bg-[#00ffcc]/20 transition-all hover:shadow-[0_0_12px_rgba(0,255,204,0.15)]"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyber-cyan text-slate-950 text-xs font-mono font-bold hover:bg-cyan-300 transition-all shadow-[0_0_12px_rgba(0,255,204,0.15)] active:scale-95"
         >
-          <Download size={12} /> Download
+          <Download size={12} />
+          <span>DOWNLOAD_PDF</span>
         </a>
       </div>
 
-      {/* Content area */}
+      {/* Frame / Stylized Overview */}
       {view === 'pdf' ? (
-        <div className="flex-1 w-full bg-[#1e1e2e] relative">
+        <div className="flex-1 w-full bg-slate-900 relative">
           <iframe
             src={resumePdf}
             title="Resume PDF"
-            className="w-full h-full border-none"
+            className="w-full h-full border-none bg-slate-900"
             style={{ minHeight: '100%' }}
           />
         </div>
       ) : (
-        <div className="flex-1 overflow-y-auto p-5">
+        <div className="flex-1 overflow-y-auto p-5 space-y-6 select-text">
           
-          {/* Header */}
-          <div className="text-center mb-5 pb-4 border-b border-[#00ffcc]/20">
-            <h1 className="text-2xl font-bold text-white tracking-wide">Shailendra Pratap Singh</h1>
-            <p className="text-[#00ffcc] text-sm font-medium mt-1">B.Tech 3rd Year | Developer | Student</p>
-            <div className="flex items-center justify-center gap-3 mt-2 text-xs text-slate-400 flex-wrap">
-              <span className="flex items-center gap-1"><Mail size={11} /> shailendraprbns@gmail.com</span>
+          {/* Main Info Card */}
+          <div className="text-center pb-5 border-b border-white/5 relative">
+            <div className="absolute right-0 top-0 text-cyber-cyan animate-pulse">
+              <Sparkles size={16} />
+            </div>
+
+            <h1 className="text-xl font-bold text-white tracking-wide uppercase">Shailendra Pratap Singh</h1>
+            <p className="text-cyber-cyan font-mono text-xs font-medium mt-1">B.Tech 3rd Year | Developer | Student</p>
+            
+            <div className="flex items-center justify-center gap-3 mt-3.5 text-[10px] font-mono text-slate-400 flex-wrap">
+              <span className="flex items-center gap-1"><Mail size={11} className="text-cyber-purple" /> shailendraprbns@gmail.com</span>
               <span>•</span>
-              <a href="https://github.com/Shailendra1122/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-[#00ffcc] transition-colors">
+              <a href="https://github.com/Shailendra1122/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-cyber-cyan transition-colors">
                 <Github size={11} /> GitHub
               </a>
               <span>•</span>
-              <a href="https://www.linkedin.com/in/shailendra-pratap-singh-067281362/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-[#00ffcc] transition-colors">
+              <a href="https://www.linkedin.com/in/shailendra-pratap-singh-067281362/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-cyber-cyan transition-colors">
                 <Linkedin size={11} /> LinkedIn
               </a>
               <span>•</span>
-              <span className="flex items-center gap-1"><MapPin size={11} /> KP1, KIIT, Bhubaneswar, Odisha</span>
+              <span className="flex items-center gap-1"><MapPin size={11} className="text-cyber-pink" /> KP1, KIIT, Bhubaneswar, Odisha</span>
             </div>
-            <p className="text-xs text-slate-400 mt-3 max-w-lg mx-auto leading-relaxed">
-              Backend-focused Computer Science student skilled in Java and Spring Boot, passionate about building scalable REST APIs and efficient software systems.
+            
+            <p className="text-xs text-slate-400 mt-4 max-w-xl mx-auto leading-relaxed">
+              Backend-focused Computer Science student skilled in Java and Spring Boot, passionate about building scalable REST APIs and efficient, microservice-based software systems.
             </p>
           </div>
 
-          {/* Skills */}
-          <section className="mb-5">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#00ffcc] mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#00ffcc] glow-pulse"></span>
-              Skills
+          {/* Technical Skills Categorization */}
+          <section>
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] font-mono text-cyber-cyan mb-3 flex items-center gap-2 select-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyber-cyan glow-cyan" />
+              Technical Core Inventory
             </h2>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               {Object.entries(skills).map(([category, items]) => (
-                <div key={category} className="bg-white/5 rounded-lg border border-white/10 p-3">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">{category}</p>
-                  <div className="flex flex-wrap gap-1.5">
+                <div key={category} className="bg-slate-900/30 rounded-lg border border-white/5 p-3">
+                  <p className="text-[9px] font-bold uppercase font-mono tracking-wider text-slate-500 mb-2">{category}</p>
+                  <div className="flex flex-wrap gap-1">
                     {items.map(item => (
-                      <span key={item} className="px-2 py-0.5 text-[10px] font-medium rounded bg-[#00ffcc]/8 text-[#00ffcc]/90 border border-[#00ffcc]/15">
+                      <span key={item} className="px-2 py-0.5 text-[9px] font-mono rounded bg-white/[0.03] text-slate-300 border border-white/5 hover:border-cyber-cyan/25 transition-colors cursor-default">
                         {item}
                       </span>
                     ))}
@@ -108,170 +115,133 @@ export default function ResumeApp() {
             </div>
           </section>
 
-          {/* Internships & Projects */}
-          <section className="mb-5">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#00ffcc] mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#00ffcc] glow-pulse"></span>
-              Internships & Projects
+          {/* Internships & Experience Projects */}
+          <section>
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] font-mono text-cyber-purple mb-4 flex items-center gap-2 select-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyber-purple" />
+              Experience & Project History
             </h2>
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               
               {/* JobQuest */}
-              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-semibold text-white text-sm">JobQuest — Job Application Tracker</h3>
-                    <a href="https://jobquest-gqlq.onrender.com" target="_blank" rel="noopener noreferrer" className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors">
-                      Live ↗
-                    </a>
+              <div className="bg-slate-900/10 rounded-xl border border-white/5 p-4 hover:border-white/10 transition-colors">
+                <div className="flex items-start justify-between gap-3 mb-2 flex-wrap sm:flex-nowrap">
+                  <div>
+                    <h3 className="font-bold text-white text-sm">JobQuest — Job Application Tracker</h3>
+                    <p className="text-[10px] font-mono text-cyber-cyan mt-0.5">Personal Project</p>
                   </div>
-                  <a href="https://github.com/Shailendra1122" target="_blank" rel="noopener noreferrer" className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 shrink-0 hover:text-white transition-colors">GitHub</a>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <a href="https://github.com/Shailendra1122" target="_blank" rel="noopener noreferrer" className="text-[9px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 hover:text-white transition-colors">Source</a>
+                    <a href="https://jobquest-gqlq.onrender.com" target="_blank" rel="noopener noreferrer" className="text-[9px] font-mono px-2 py-0.5 rounded bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/20 hover:bg-cyber-cyan/20 transition-colors">Live ↗</a>
+                  </div>
                 </div>
-                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed">
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Built a full-stack job application tracking system with REST APIs and MVC architecture.</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Implemented Kanban workflow to track application stages (Applied → Interview → Offer).</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Developed analytics dashboard for tracking application trends and status distribution.</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Integrated file uploads for resumes and cover letters.</li>
+                
+                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed pl-1">
+                  <li className="flex gap-2"><span className="text-cyber-cyan shrink-0">▸</span>Built a full-stack job application tracking system with REST APIs and MVC architecture.</li>
+                  <li className="flex gap-2"><span className="text-cyber-cyan shrink-0">▸</span>Implemented Kanban workflow to track application stages (Applied → Interview → Offer).</li>
+                  <li className="flex gap-2"><span className="text-cyber-cyan shrink-0">▸</span>Developed analytics dashboard for tracking application trends and status distribution.</li>
+                  <li className="flex gap-2"><span className="text-cyber-cyan shrink-0">▸</span>Integrated file uploads for resumes and cover letters.</li>
                 </ul>
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">Spring Boot</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">Java</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">SQLite</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Thymeleaf</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Bootstrap</span>
+
+                <div className="flex gap-1.5 mt-3 flex-wrap">
+                  {['Spring Boot', 'Java', 'SQLite', 'Thymeleaf', 'Bootstrap'].map(t => (
+                    <span key={t} className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-300 border border-white/5">{t}</span>
+                  ))}
                 </div>
               </div>
               
               {/* JPMorgan */}
-              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-semibold text-white text-sm">JPMorganChase Software Engineering Job Simulation</h3>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Forage</span>
+              <div className="bg-slate-900/10 rounded-xl border border-white/5 p-4 hover:border-white/10 transition-colors">
+                <div className="flex items-start justify-between gap-3 mb-2 flex-wrap sm:flex-nowrap">
+                  <div>
+                    <h3 className="font-bold text-white text-sm">JPMorganChase Software Engineering Job Simulation</h3>
+                    <p className="text-[10px] font-mono text-cyber-purple mt-0.5">Job Simulation Program (Forage)</p>
                   </div>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 font-mono shrink-0">2025</span>
+                  <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-[#bf55ec]/10 text-slate-300 border border-[#bf55ec]/20 shrink-0 select-none">2025</span>
                 </div>
-                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed">
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Integrated Kafka into a Spring Boot microservice to consume high-volume transaction messages</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Implemented transaction validation and persistence using Spring Data JPA with H2 SQL database</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Connected the service to an external REST Incentive API using RestTemplate</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Developed REST endpoints for querying user balances via Spring controllers</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Verified system behaviour using Maven test suites and debugging tools</li>
+
+                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed pl-1">
+                  <li className="flex gap-2"><span className="text-cyber-purple shrink-0">▸</span>Integrated Kafka into a Spring Boot microservice to consume high-volume transaction messages.</li>
+                  <li className="flex gap-2"><span className="text-cyber-purple shrink-0">▸</span>Implemented transaction validation and persistence using Spring Data JPA with H2 SQL database.</li>
+                  <li className="flex gap-2"><span className="text-cyber-purple shrink-0">▸</span>Connected the service to an external REST Incentive API using RestTemplate.</li>
+                  <li className="flex gap-2"><span className="text-cyber-purple shrink-0">▸</span>Developed REST endpoints for querying user balances via Spring controllers.</li>
                 </ul>
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">Java</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">Spring Boot</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">Kafka</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Spring Data JPA</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">H2 SQL</span>
+
+                <div className="flex gap-1.5 mt-3 flex-wrap">
+                  {['Java', 'Spring Boot', 'Kafka', 'Spring Data JPA', 'H2 SQL'].map(t => (
+                    <span key={t} className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-300 border border-white/5">{t}</span>
+                  ))}
                 </div>
               </div>
 
               {/* KrishiSeva */}
-              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-semibold text-white text-sm">KrishiSeva — AI-Driven Agri-Tech Platform</h3>
-                    <a href="https://krishiseva-blush.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 hover:bg-cyan-500/20 transition-colors">
-                      Live ↗
-                    </a>
+              <div className="bg-slate-900/10 rounded-xl border border-white/5 p-4 hover:border-white/10 transition-colors">
+                <div className="flex items-start justify-between gap-3 mb-2 flex-wrap sm:flex-nowrap">
+                  <div>
+                    <h3 className="font-bold text-white text-sm">KrishiSeva — AI-Driven Agri-Tech Platform</h3>
+                    <p className="text-[10px] font-mono text-emerald-400 mt-0.5">Project Collaboration</p>
                   </div>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 font-mono shrink-0">2025</span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 select-none">2025</span>
+                    <a href="https://krishiseva-blush.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[9px] font-mono px-2 py-0.5 rounded bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/20 hover:bg-cyber-cyan/20 transition-colors">Live ↗</a>
+                  </div>
                 </div>
-                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed">
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Built a smart agriculture platform using FastAPI and React for crop disease detection and soil intelligence</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Integrated machine learning models for crop recommendation and yield prediction</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Developed a responsive web interface for real-time farmer interaction and advisory services</li>
+
+                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed pl-1">
+                  <li className="flex gap-2"><span className="text-emerald-400 shrink-0">▸</span>Built a smart agriculture platform using FastAPI and React for crop disease detection and soil intelligence.</li>
+                  <li className="flex gap-2"><span className="text-emerald-400 shrink-0">▸</span>Integrated machine learning models for crop recommendation and yield prediction.</li>
+                  <li className="flex gap-2"><span className="text-emerald-400 shrink-0">▸</span>Developed a responsive web interface for real-time farmer interaction and advisory services.</li>
                 </ul>
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">FastAPI</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">React</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">ML</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">Python</span>
+
+                <div className="flex gap-1.5 mt-3 flex-wrap">
+                  {['FastAPI', 'React', 'ML', 'Python'].map(t => (
+                    <span key={t} className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-300 border border-white/5">{t}</span>
+                  ))}
                 </div>
               </div>
 
               {/* CoLab Connect */}
-              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-semibold text-white text-sm">CoLab Connect — Open Innovation & Collaboration Platform</h3>
+              <div className="bg-slate-900/10 rounded-xl border border-white/5 p-4 hover:border-white/10 transition-colors">
+                <div className="flex items-start justify-between gap-3 mb-2 flex-wrap sm:flex-nowrap">
+                  <div>
+                    <h3 className="font-bold text-white text-sm">CoLab Connect — Open Collaboration Platform</h3>
+                    <p className="text-[10px] font-mono text-cyber-blue mt-0.5">Backend Development</p>
                   </div>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 font-mono shrink-0">2024</span>
+                  <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10 shrink-0 select-none">2024</span>
                 </div>
-                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed">
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Built a collaboration platform allowing users to publish projects and recruit team members</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Developed REST APIs using Node.js and Express for authentication and project management</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Designed scalable MongoDB schema for user relationships and project tracking</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Created a clean UI using Tailwind CSS for simplified idea sharing</li>
+
+                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed pl-1">
+                  <li className="flex gap-2"><span className="text-cyber-blue shrink-0">▸</span>Built a collaboration platform allowing users to publish projects and recruit team members.</li>
+                  <li className="flex gap-2"><span className="text-cyber-blue shrink-0">▸</span>Developed REST APIs using Node.js and Express for authentication and project management.</li>
+                  <li className="flex gap-2"><span className="text-cyber-blue shrink-0">▸</span>Designed scalable MongoDB schema for user relationships and project tracking.</li>
                 </ul>
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">JavaScript</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">Node.js</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">MongoDB</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">Tailwind CSS</span>
+
+                <div className="flex gap-1.5 mt-3 flex-wrap">
+                  {['JavaScript', 'Node.js', 'MongoDB', 'Tailwind CSS'].map(t => (
+                    <span key={t} className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-300 border border-white/5">{t}</span>
+                  ))}
                 </div>
               </div>
-
-              {/* 1Stop */}
-              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-semibold text-white text-sm">Back-End Web Development — Booking Management System (1Stop)</h3>
-                  </div>
-                </div>
-                <ul className="text-xs text-slate-300 space-y-1.5 leading-relaxed">
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Built ticket booking and blogging system using Laravel and PHP</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Developed user and admin dashboards for booking and event management</li>
-                  <li className="flex gap-2"><span className="text-[#00ffcc] shrink-0">▸</span>Implemented responsive UI using Bootstrap and optimized database queries</li>
-                </ul>
-                <div className="flex gap-2 mt-2 flex-wrap">
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">PHP</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">Laravel</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Bootstrap</span>
-                </div>
-              </div>
-
             </div>
           </section>
 
-          {/* Education */}
-          <section className="mb-5">
-            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#00ffcc] mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#00ffcc] glow-pulse"></span>
-              Education
+          {/* Education Details */}
+          <section>
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] font-mono text-cyber-pink mb-4 flex items-center gap-2 select-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyber-pink" />
+              Academic Record
             </h2>
             <div className="space-y-3">
-              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
-                <div className="flex justify-between items-start">
+              <div className="bg-slate-900/10 rounded-xl border border-white/5 p-4">
+                <div className="flex justify-between items-start flex-wrap gap-2">
                   <div>
-                    <p className="font-semibold text-white text-sm">B.Tech in Computer Science & Engineering</p>
+                    <p className="font-semibold text-white text-xs md:text-sm">B.Tech in Computer Science & Engineering</p>
                     <p className="text-slate-400 text-xs mt-0.5">KIIT DU, Bhubaneswar</p>
                   </div>
-                  <span className="text-xs px-2 py-0.5 rounded bg-[#00ffcc]/10 text-[#00ffcc] border border-[#00ffcc]/20 font-mono shrink-0">2023–2027</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/20 font-mono shrink-0 select-none">2023–2027</span>
                 </div>
-                <p className="text-xs text-slate-400 mt-2">CGPA (5th Semester): 7.1</p>
-              </div>
-              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="font-semibold text-white text-sm">Class XII (CBSE)</p>
-                    <p className="text-slate-400 text-xs mt-0.5">B.N.S English School, Varanasi</p>
-                  </div>
-                  <span className="text-xs px-2 py-0.5 rounded bg-[#818cf8]/10 text-[#818cf8] border border-[#818cf8]/20 font-mono shrink-0">2022</span>
-                </div>
-                <p className="text-xs text-slate-400 mt-2">Percentage: 76%</p>
-              </div>
-              <div className="bg-white/5 rounded-lg border border-white/10 p-4">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <p className="font-semibold text-white text-sm">Class X (CBSE)</p>
-                    <p className="text-slate-400 text-xs mt-0.5">B.N.S English School, Varanasi</p>
-                  </div>
-                  <span className="text-xs px-2 py-0.5 rounded bg-[#f472b6]/10 text-[#f472b6] border border-[#f472b6]/20 font-mono shrink-0">2020</span>
-                </div>
-                <p className="text-xs text-slate-400 mt-2">Percentage: 74%</p>
+                <p className="text-xs font-semibold text-cyber-cyan mt-2">CGPA (5th Semester): 7.1</p>
               </div>
             </div>
           </section>

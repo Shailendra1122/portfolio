@@ -2,44 +2,44 @@ import React, { useState, useEffect } from 'react';
 import Taskbar from './Taskbar';
 import DesktopIcon from './DesktopIcon';
 import Window from './Window';
+
+// Import apps content
 import ProfileApp from '../apps/ProfileApp';
-import ResumeApp from '../apps/ResumeApp';
+import SkillsApp from '../apps/SkillsApp';
+import ProjectsApp from '../apps/ProjectsApp';
 import EducationApp from '../apps/EducationApp';
+import ResumeApp from '../apps/ResumeApp';
 import ContactApp from '../apps/ContactApp';
+import GithubApp from '../apps/GithubApp';
+import LinkedinApp from '../apps/LinkedinApp';
 import TerminalGame from '../apps/TerminalGame';
 
-import { User, FileText, Terminal, GraduationCap, PhoneOutgoing, Github, Linkedin, Mail } from 'lucide-react';
+// Lucide Icons
+import { User, FileText, GraduationCap, Code2, Briefcase, Phone, Github, Linkedin, Terminal } from 'lucide-react';
 
 const APPS_CONFIG = {
   profile: { id: 'profile', title: 'Profile', icon: User, Component: ProfileApp },
-  resume: { id: 'resume', title: 'Resume', icon: FileText, Component: ResumeApp },
+  skills: { id: 'skills', title: 'Skills', icon: Code2, Component: SkillsApp },
+  projects: { id: 'projects', title: 'Projects', icon: Briefcase, Component: ProjectsApp },
   education: { id: 'education', title: 'Education', icon: GraduationCap, Component: EducationApp },
-  contact: { id: 'contact', title: 'Contact', icon: PhoneOutgoing, Component: ContactApp },
-  terminal: { id: 'terminal', title: 'Terminal Games', icon: Terminal, Component: TerminalGame },
+  resume: { id: 'resume', title: 'Resume', icon: FileText, Component: ResumeApp },
+  contact: { id: 'contact', title: 'Contact', icon: Phone, Component: ContactApp },
+  github: { id: 'github', title: 'GitHub Stats', icon: Github, Component: GithubApp },
+  linkedin: { id: 'linkedin', title: 'LinkedIn Card', icon: Linkedin, Component: LinkedinApp },
+  terminal: { id: 'terminal', title: 'Terminal CLI', icon: Terminal, Component: TerminalGame },
 };
 
-export default function Desktop() {
+export default function Desktop({ initialApp, onBackToHero }) {
   const [windows, setWindows] = useState([]);
   const [activeWindowId, setActiveWindowId] = useState(null);
   const [zIndexCounter, setZIndexCounter] = useState(10);
-  const [showWelcome, setShowWelcome] = useState(true);
 
-  // Typing animation for role text
-  const [typedText, setTypedText] = useState('');
-  const fullText = 'Java Full Stack Developer';
-  
+  // Focus and open initial app if navigated with quick CTA from Hero
   useEffect(() => {
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i <= fullText.length) {
-        setTypedText(fullText.slice(0, i));
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 60);
-    return () => clearInterval(timer);
-  }, []);
+    if (initialApp && APPS_CONFIG[initialApp]) {
+      openApp(initialApp);
+    }
+  }, [initialApp]);
 
   const openApp = (appId) => {
     setActiveWindowId(appId);
@@ -47,12 +47,12 @@ export default function Desktop() {
 
     if (!windows.find((w) => w.id === appId)) {
       setWindows((prev) => [
-        ...prev, 
-        { ...APPS_CONFIG[appId], isMinimized: false, zIndex: zIndexCounter }
+        ...prev,
+        { ...APPS_CONFIG[appId], isMinimized: false, zIndex: zIndexCounter + 1 }
       ]);
     } else {
       setWindows((prev) =>
-        prev.map((w) => (w.id === appId ? { ...w, isMinimized: false, zIndex: zIndexCounter } : w))
+        prev.map((w) => (w.id === appId ? { ...w, isMinimized: false, zIndex: zIndexCounter + 1 } : w))
       );
     }
   };
@@ -78,150 +78,83 @@ export default function Desktop() {
     setActiveWindowId(appId);
     setZIndexCounter((prev) => prev + 1);
     setWindows((prev) =>
-      prev.map((w) => (w.id === appId ? { ...w, isMinimized: false, zIndex: zIndexCounter } : w))
+      prev.map((w) => (w.id === appId ? { ...w, isMinimized: false, zIndex: zIndexCounter + 1 } : w))
     );
   };
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-slate-950 relative select-none flex flex-col bg-[url('https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2560&auto=format&fit=crop')] bg-cover bg-center">
-      {/* Desktop Area */}
-      <div 
-        className="flex-1 relative p-4 pt-[60px] flex" 
-        onClick={() => setActiveWindowId(null)}
-      >
-        {/* Icon grid - left side */}
-        <div className="flex flex-col flex-wrap gap-1 items-start content-start shrink-0">
-          <DesktopIcon app={APPS_CONFIG.profile} onDoubleClick={() => openApp('profile')} />
-          <DesktopIcon app={APPS_CONFIG.resume} onDoubleClick={() => openApp('resume')} />
-          <DesktopIcon app={APPS_CONFIG.education} onDoubleClick={() => openApp('education')} />
-          <DesktopIcon app={APPS_CONFIG.contact} onDoubleClick={() => openApp('contact')} />
-          <DesktopIcon app={{ title: 'GitHub', icon: Github }} onDoubleClick={() => window.open('https://github.com/Shailendra1122/', '_blank')} />
-          <DesktopIcon app={{ title: 'LinkedIn', icon: Linkedin }} onDoubleClick={() => window.open('https://www.linkedin.com/in/shailendra-pratap-singh-067281362/', '_blank')} />
-          <DesktopIcon app={APPS_CONFIG.terminal} onDoubleClick={() => openApp('terminal')} />
-        </div>
-
-        {/* Render Windows */}
-        {windows.map((win) => {
-          if (win.isMinimized) return null;
-          const AppRenderer = win.Component;
-          return (
-            <Window
-              key={win.id}
-              title={win.title}
-              isActive={activeWindowId === win.id}
-              onFocus={() => focusWindow(win.id)}
-              onClose={() => closeWindow(win.id)}
-              onMinimize={() => minimizeWindow(win.id)}
-              appId={win.id}
-              zIndex={win.zIndex}
-            >
-              <AppRenderer />
-            </Window>
-          );
-        })}
-
-        {/* Welcome Hero Widget — center of desktop */}
-        {showWelcome && windows.length === 0 && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none pt-[40px]">
-            <div className="pointer-events-auto max-w-lg text-center animate-fade-slide-up">
-              <div className="bg-slate-900/70 backdrop-blur-xl rounded-2xl border border-[#00ffcc]/15 p-8 shadow-2xl shadow-black/50">
-                {/* Name */}
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
-                  Shailendra Pratap Singh
-                </h1>
-                
-                {/* Typing role */}
-                <p className="text-[#00ffcc] font-mono text-lg md:text-xl font-medium mb-4">
-                  <span className="text-slate-500">{'> '}</span>
-                  {typedText}
-                  <span className="inline-block w-[2px] h-5 bg-[#00ffcc] ml-0.5 animate-pulse align-middle"></span>
-                </p>
-
-                <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-md mx-auto">
-                  Welcome to my interactive desktop portfolio. Double-click on any icon to explore my projects, skills, and experience.
-                </p>
-
-                {/* Quick Actions */}
-                <div className="flex items-center justify-center gap-3 flex-wrap">
-                  <button 
-                    className="px-5 py-2.5 rounded-lg bg-[#00ffcc]/10 border border-[#00ffcc]/30 text-[#00ffcc] font-medium text-sm hover:bg-[#00ffcc]/20 transition-all hover:shadow-[0_0_20px_rgba(0,255,204,0.15)]"
-                    onClick={(e) => { e.stopPropagation(); openApp('profile'); }}
-                  >
-                    View Profile
-                  </button>
-                  <button 
-                    className="px-5 py-2.5 rounded-lg bg-white/5 border border-white/15 text-white font-medium text-sm hover:bg-white/10 transition-all"
-                    onClick={(e) => { e.stopPropagation(); openApp('resume'); }}
-                  >
-                    View Resume
-                  </button>
-                  <button 
-                    className="px-5 py-2.5 rounded-lg bg-white/5 border border-white/15 text-white font-medium text-sm hover:bg-white/10 transition-all"
-                    onClick={(e) => { e.stopPropagation(); openApp('contact'); }}
-                  >
-                    Contact Me
-                  </button>
-                </div>
-
-                {/* Status */}
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-6 text-xs text-slate-500">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 glow-pulse"></span>
-                    Available for work
-                  </span>
-                  <span>B.Tech CSE · KIIT University</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Floating Actions — right side */}
-        <div className="fixed right-5 top-1/2 -translate-y-1/2 z-[9999] flex flex-col gap-4">
-          {/* Floating Mail Button */}
-          <a
-            href="mailto:shailendraprbns@gmail.com"
-            title="Mail Me"
-            className="group flex items-center justify-end relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Tooltip */}
-            <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-[#00ffcc]/20 text-[#00ffcc] text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none shadow-lg">
-              Mail Me
-            </span>
-            {/* Button */}
-            <div className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-[#00ffcc]/30 flex items-center justify-center text-[#00ffcc] shadow-[0_0_20px_rgba(0,255,204,0.15)] hover:shadow-[0_0_30px_rgba(0,255,204,0.35)] hover:border-[#00ffcc]/60 hover:scale-110 transition-all duration-300 cursor-pointer">
-              <Mail size={20} />
-            </div>
-          </a>
-
-          {/* Floating GitHub Button */}
-          <a
-            href="https://github.com/Shailendra1122/"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="GitHub"
-            className="group flex items-center justify-end relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Tooltip */}
-            <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-[#00ffcc]/20 text-[#00ffcc] text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none shadow-lg">
-              GitHub
-            </span>
-            {/* Button */}
-            <div className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-[#00ffcc]/30 flex items-center justify-center text-[#00ffcc] shadow-[0_0_20px_rgba(0,255,204,0.15)] hover:shadow-[0_0_30px_rgba(0,255,204,0.35)] hover:border-[#00ffcc]/60 hover:scale-110 transition-all duration-300 cursor-pointer">
-              <Github size={20} />
-            </div>
-          </a>
-        </div>
-
+    <div className="h-screen w-screen overflow-hidden relative select-none flex flex-col pt-[44px] bg-slate-950 bg-radial from-[#0e081c] via-[#04060c] to-[#010204]">
+      {/* Desktop wallpaper grid overlays (highly futuristic) */}
+      <div className="absolute inset-0 bg-transparent pointer-events-none z-0">
+        {/* Neon accent orb backdrops */}
+        <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] rounded-full bg-cyber-cyan/5 blur-[150px]" />
+        <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] rounded-full bg-cyber-pink/5 blur-[150px]" />
       </div>
 
-      <Taskbar 
-        windows={windows} 
-        activeWindowId={activeWindowId} 
-        onAppClick={focusWindow} 
+      {/* Main Desktop workspace container */}
+      <div 
+        className="flex-1 w-full relative p-4 flex gap-4 z-10"
+        onClick={() => setActiveWindowId(null)}
+      >
+        {/* Left Sidebar Panel (Glass dock containing desktop app launchers) */}
+        <div 
+          className="h-full w-[76px] rounded-2xl glass-panel border border-white/5 flex flex-col items-center py-4 gap-3 z-20 shadow-xl shadow-black/30 select-none"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Top subtle tech indicator */}
+          <div className="flex items-center gap-0.5 justify-center mb-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyber-cyan animate-ping" />
+            <span className="w-1 h-1 rounded-full bg-cyber-cyan" />
+          </div>
+
+          <div className="flex-1 flex flex-col gap-2.5 items-center justify-start overflow-y-auto no-scrollbar w-full px-1">
+            <DesktopIcon app={APPS_CONFIG.profile} onDoubleClick={() => openApp('profile')} />
+            <DesktopIcon app={APPS_CONFIG.skills} onDoubleClick={() => openApp('skills')} />
+            <DesktopIcon app={APPS_CONFIG.projects} onDoubleClick={() => openApp('projects')} />
+            <DesktopIcon app={APPS_CONFIG.education} onDoubleClick={() => openApp('education')} />
+            <DesktopIcon app={APPS_CONFIG.resume} onDoubleClick={() => openApp('resume')} />
+            <DesktopIcon app={APPS_CONFIG.contact} onDoubleClick={() => openApp('contact')} />
+            <DesktopIcon app={APPS_CONFIG.github} onDoubleClick={() => openApp('github')} />
+            <DesktopIcon app={APPS_CONFIG.linkedin} onDoubleClick={() => openApp('linkedin')} />
+            <DesktopIcon app={APPS_CONFIG.terminal} onDoubleClick={() => openApp('terminal')} />
+          </div>
+
+          {/* Bottom subtle brand logo */}
+          <div className="text-[7px] font-mono font-bold text-slate-600 tracking-widest mt-1">
+            SPS.OS
+          </div>
+        </div>
+
+        {/* Windows Rendering Space */}
+        <div className="flex-1 h-full relative" onClick={(e) => e.stopPropagation()}>
+          {windows.map((win) => {
+            if (win.isMinimized) return null;
+            const AppRenderer = win.Component;
+            return (
+              <Window
+                key={win.id}
+                title={win.title}
+                isActive={activeWindowId === win.id}
+                onFocus={() => focusWindow(win.id)}
+                onClose={() => closeWindow(win.id)}
+                onMinimize={() => minimizeWindow(win.id)}
+                appId={win.id}
+                zIndex={win.zIndex}
+              >
+                <AppRenderer />
+              </Window>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Taskbar Top position */}
+      <Taskbar
+        windows={windows}
+        activeWindowId={activeWindowId}
+        onAppClick={focusWindow}
         openApp={openApp}
+        onBackToHero={onBackToHero}
       />
     </div>
   );

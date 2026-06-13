@@ -1,36 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #372e48;
+  --color-brand-body: #4b5563;
+  --color-brand-peach: #fff5f0;
+  --color-brand-accent: #f27a7d;
+  --color-brand-pink: #fd6885;
+  --color-brand-purple: #9d5cf2;
+  --color-brand-orange: #ff9e43;
+  --color-brand-card: rgba(253, 247, 244, 0.85);
+  --color-brand-border: #f8e5db;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Outfit', system-ui, -apple-system, sans-serif;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  user-select: none;
-  background-color: #0b0f19;
+  overflow-x: hidden;
+  background-color: #fff9f6;
+  color: #4b5563;
 }
 
-/* Scrollbar styling for dark themed apps */
+/* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 255, 204, 0.3);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 255, 204, 0.5);
+  width: 8px;
 }
 
-/* Smooth entrance animation */
-@keyframes fadeSlideUp {
+::-webkit-scrollbar-track {
+  background: #fff5f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f8e5db;
+  border-radius: 9999px;
+  border: 2px solid #fff5f0;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f27a7d;
+}
+
+/* Smooth Entrance Fade Animation */
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -38,28 +59,69 @@ body {
   }
 }
 
-.animate-fade-slide-up {
-  animation: fadeSlideUp 0.5s ease-out forwards;
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Glow pulse for status indicators */
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 4px rgba(0, 255, 204, 0.4); }
-  50% { box-shadow: 0 0 12px rgba(0, 255, 204, 0.8); }
+/* Custom card container styles matching the design */
+.premium-card {
+  background: rgba(253, 247, 244, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #f8e5db;
+  border-radius: 1.25rem; /* 20px */
+  box-shadow: 0 4px 20px -2px rgba(239, 219, 210, 0.25);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glow-pulse {
-  animation: glowPulse 2s ease-in-out infinite;
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -4px rgba(239, 219, 210, 0.45);
+  border-color: #ebd1c4;
 }
 
-/* Typing cursor blink */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+/* Custom Pill Button Styles for Skills */
+.skill-pill {
+  background: #ffffff;
+  border: 1px solid #f8e5db;
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #372e48;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(239, 219, 210, 0.15);
+  transition: all 0.3s ease;
 }
 
-.cursor-blink::after {
-  content: '▌';
-  animation: blink 1s step-end infinite;
-  color: #00ffcc;
+.skill-pill:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(239, 219, 210, 0.3);
+  border-color: #f27a7d;
+}
+
+/* Gradient Underline for Section Titles */
+.section-underline {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #fd6885, #9d5cf2);
+  border-radius: 9999px;
+  margin: 0.75rem auto 0;
+}
+
+/* Dynamic Capsule Labels for Sections */
+.section-capsule {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #372e48;
+  border: 1px solid #f8e5db;
+  border-radius: 9999px;
+  padding: 0.35rem 1rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: inline-block;
+  margin-bottom: 0.75rem;
 }

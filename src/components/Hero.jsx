@@ -1,79 +1,157 @@
-import { motion } from "framer-motion";
-import { Github, Linkedin, FileText, ArrowDown } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Terminal, Code, Cpu, Sparkles, FolderKanban, Download, Mail, Play } from 'lucide-react';
+import resumePdf from '../assets/RESUME.pdf';
 
-const Hero = () => {
+export default function Hero({ onNavigate }) {
+  const [typedText, setTypedText] = useState('');
+  const [skillIndex, setSkillIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  
+  const skills = [
+    'Spring Boot Microservices',
+    'Scalable REST APIs',
+    'React & Frontend Interfaces',
+    'AI/ML Models & Python',
+    'Database Optimization'
+  ];
+
+  useEffect(() => {
+    let timer;
+    const currentFull = skills[skillIndex];
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setTypedText(prev => prev.slice(0, prev.length - 1));
+      }, 30);
+    } else {
+      timer = setTimeout(() => {
+        setTypedText(currentFull.slice(0, typedText.length + 1));
+      }, 70);
+    }
+
+    if (!isDeleting && typedText === currentFull) {
+      // Pause at full text
+      timer = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && typedText === '') {
+      setIsDeleting(false);
+      setSkillIndex(prev => (prev + 1) % skills.length);
+    }
+
+    return () => clearTimeout(timer);
+  }, [typedText, isDeleting, skillIndex]);
+
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
-    >
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-900 to-slate-900 -z-10" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-blue-500 font-semibold tracking-wide uppercase mb-4">
-            Aspiring Software Engineer
-          </h2>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Shailendra Pratap <span className="text-blue-500">Singh</span>
-          </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            I am a B.Tech Computer Science student passionate about{" "}
-            <span className="text-gray-200 font-medium">backend development</span>,
-            <span className="text-gray-200 font-medium"> distributed systems</span>, and
-            building
-            <span className="text-gray-200 font-medium"> scalable applications</span> using
-            Java and modern web technologies.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://github.com/Shailendra1122/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg transition-colors border border-slate-700"
-            >
-              <Github size={20} />
-              GitHub
-            </a>
-            <a
-              href="https://linkedin.com/in/shailendra-pratap-singh-067281362"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors shadow-lg shadow-blue-500/25"
-            >
-              <Linkedin size={20} />
-              LinkedIn
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg transition-colors border border-slate-700"
-              onClick={(e) => {
-                e.preventDefault();
-                alert("Resume download functionality would be implemented here!");
-              }}
-            >
-              <FileText size={20} />
-              Resume
-            </a>
-          </div>
-        </motion.div>
+    <div className="relative min-h-screen w-screen flex items-center justify-center p-4 overflow-hidden bg-radial from-[#1e1136] via-[#070a13] to-[#03050a]">
+      {/* Background neon grid shapes */}
+      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-cyber-purple/10 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-cyber-cyan/10 blur-[120px] pointer-events-none" />
 
-        <motion.div
+      {/* Main glass card container */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="relative z-10 max-w-3xl w-full rounded-2xl border border-white/10 bg-slate-950/40 p-8 md:p-12 backdrop-blur-2xl shadow-2xl text-center shadow-black/80 flex flex-col items-center animate-border-glow"
+      >
+        {/* Futuristic layout top panel element */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 px-6 py-1 bg-cyber-cyan/10 border-b border-x border-cyber-cyan/30 rounded-b-xl text-[10px] uppercase tracking-[0.3em] font-mono text-cyber-cyan font-bold flex items-center gap-1.5 shadow-[0_0_15px_rgba(0,255,204,0.1)]">
+          <Cpu size={10} className="animate-spin" style={{ animationDuration: '6s' }} /> SYSTEM STABLE // PORTFOLIO ONLINE
+        </div>
+
+        {/* Floating animated sparkles */}
+        <div className="absolute top-6 right-6 text-cyber-pink animate-pulse">
+          <Sparkles size={20} />
+        </div>
+
+        {/* Subtitle / Status */}
+        <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+          transition={{ delay: 0.3 }}
+          className="mt-2 mb-4 flex items-center gap-2 text-xs font-mono text-slate-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full"
         >
-          <ArrowDown className="text-gray-500" size={24} />
+          <span className="w-2 h-2 rounded-full bg-cyber-cyan glow-cyan inline-block"></span>
+          <span>SYSTEMS ACTIVE · AVAILABLE FOR OPPORTUNITIES</span>
         </motion.div>
-      </div>
-    </section>
-  );
-};
 
-export default Hero;
+        {/* Name */}
+        <motion.h1 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white select-text"
+        >
+          Shailendra Pratap Singh
+        </motion.h1>
+
+        {/* Title */}
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-300 mt-2 flex items-center justify-center gap-2 select-text"
+        >
+          <Code size={18} className="text-cyber-purple" />
+          Java Full Stack Developer
+        </motion.p>
+
+        {/* Typing animation block */}
+        <div className="h-8 md:h-10 mt-3 mb-8 flex items-center justify-center font-mono">
+          <span className="text-slate-500 text-sm md:text-base">{'>'} console.log(</span>
+          <span className="text-cyber-cyan text-sm md:text-base font-semibold select-text">
+            "{typedText}"
+          </span>
+          <span className="text-slate-500 text-sm md:text-base">)</span>
+          <span className="w-1.5 h-4 md:h-5 bg-cyber-cyan ml-1 animate-pulse" />
+        </div>
+
+        {/* Action Button layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg mt-2">
+          {/* Launch OS Workspace */}
+          <button
+            onClick={() => onNavigate('desktop')}
+            className="flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyber-cyan/20 to-cyber-blue/20 hover:from-cyber-cyan/35 hover:to-cyber-blue/35 border border-cyber-cyan/40 hover:border-cyber-cyan text-cyber-cyan hover:text-white font-semibold text-sm transition-all duration-300 shadow-[0_0_20px_rgba(0,255,204,0.1)] hover:shadow-[0_0_35px_rgba(0,255,204,0.25)] hover:scale-[1.02]"
+          >
+            <Play size={16} fill="currentColor" />
+            Enter OS Workspace
+          </button>
+
+          {/* View Projects */}
+          <button
+            onClick={() => onNavigate('desktop', 'projects')}
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyber-purple/40 hover:bg-cyber-purple/10 text-slate-200 hover:text-cyber-purple font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:scale-[1.02]"
+          >
+            <FolderKanban size={16} />
+            View Projects
+          </button>
+
+          {/* Download Resume */}
+          <a
+            href={resumePdf}
+            download="Shailendra_Pratap_Singh_Resume.pdf"
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyber-pink/40 hover:bg-cyber-pink/10 text-slate-200 hover:text-cyber-pink font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.15)] hover:scale-[1.02]"
+          >
+            <Download size={16} />
+            Download Resume
+          </a>
+
+          {/* Contact Me */}
+          <button
+            onClick={() => onNavigate('desktop', 'contact')}
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyber-cyan/40 hover:bg-cyber-cyan/10 text-slate-200 hover:text-cyber-cyan font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,255,204,0.15)] hover:scale-[1.02]"
+          >
+            <Mail size={16} />
+            Contact Me
+          </button>
+        </div>
+
+        {/* Small retro system detail footer */}
+        <div className="mt-10 pt-6 border-t border-white/5 flex items-center justify-between w-full text-[10px] font-mono text-slate-500">
+          <span>REACT 19.2 // TAILWIND 4.0</span>
+          <span>IP: 127.0.0.1 // LOCALHOST</span>
+        </div>
+      </motion.div>
+    </div>
+  );
+}

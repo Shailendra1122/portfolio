@@ -1,82 +1,108 @@
-import { useState, useEffect } from "react";
-import { Menu, X, Github, Linkedin, Mail } from "lucide-react";
-import { useScroll, motion } from "framer-motion";
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 
-const Navbar = () => {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  const navItems = [
+    { label: 'Home', id: 'home' },
+    { label: 'About', id: 'about' },
+    { label: 'Skills', id: 'skills' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Achievements', id: 'achievements' },
+    { label: 'Contact', id: 'contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollPosition = window.scrollY + 200;
+      
+      for (const item of navItems) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(item.id);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { title: "Home", href: "#hero" },
-    { title: "About", href: "#about" },
-    { title: "Skills", href: "#skills" },
-    { title: "Projects", href: "#projects" },
-    { title: "Contact", href: "#contact" },
-  ];
+  const handleScrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-slate-900/90 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <a href="#" className="text-xl font-bold text-blue-500">
-              SPS
-            </a>
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.title}
-                  href={link.href}
-                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
-                >
-                  {link.title}
-                </a>
-              ))}
-            </div>
-          </div>
-          <div className="-mr-2 flex md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
+    <nav className="sticky top-0 w-full h-16 bg-white/70 backdrop-blur-md border-b border-[#f8e5db] z-[9999] px-6 sm:px-12 flex items-center justify-between font-sans select-none">
+      
+      {/* Brand Logo in Cyber-Pastel */}
+      <div 
+        onClick={() => handleScrollTo('home')}
+        className="text-base sm:text-lg font-bold tracking-tight text-[#372e48] cursor-pointer flex items-center gap-0.5"
+      >
+        <span className="text-brand-pink">&lt;</span>
+        <span>ShailendraPratap</span>
+        <span className="text-brand-purple">/&gt;</span>
       </div>
 
+      {/* Desktop Links list */}
+      <div className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-slate-500">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => handleScrollTo(item.id)}
+            className={`transition-colors duration-250 cursor-pointer relative py-1 ${
+              activeSection === item.id 
+                ? 'text-[#372e48]' 
+                : 'hover:text-[#372e48] text-slate-400'
+            }`}
+          >
+            <span>{item.label}</span>
+            {activeSection === item.id && (
+              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-brand-pink to-brand-purple rounded-full" />
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Mobile Burger Menu Toggle */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden text-[#372e48] p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+        aria-label="Toggle menu"
+      >
+        {isOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      {/* Mobile Nav Overlay Drawer */}
       {isOpen && (
-        <div className="md:hidden bg-slate-900 shadow-xl">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.title}
-                href={link.href}
-                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.title}
-              </a>
-            ))}
-          </div>
+        <div className="absolute top-16 left-0 w-full bg-[#fffcfb] border-b border-[#f8e5db] shadow-lg md:hidden flex flex-col p-4 space-y-3 font-semibold uppercase tracking-wider text-xs z-50 text-slate-500 animate-fade-slide-up">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleScrollTo(item.id)}
+              className={`text-left px-4 py-2.5 rounded-lg transition-all ${
+                activeSection === item.id 
+                  ? 'bg-gradient-to-r from-brand-peach to-transparent text-[#372e48] font-bold border-l-2 border-brand-pink' 
+                  : 'hover:bg-slate-50 text-slate-400'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
         </div>
       )}
     </nav>
   );
-};
-
-export default Navbar;
+}
