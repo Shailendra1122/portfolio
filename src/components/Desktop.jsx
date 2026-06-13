@@ -176,22 +176,44 @@ export default function Desktop() {
           </div>
         )}
 
-        {/* Floating Mail Button — right side */}
-        <a
-          href="mailto:shailendraprbns@gmail.com"
-          title="Mail Me"
-          className="group fixed right-5 top-1/2 -translate-y-1/2 z-[9999] flex items-center"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Tooltip */}
-          <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-[#00ffcc]/20 text-[#00ffcc] text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none shadow-lg">
-            Mail Me
-          </span>
-          {/* Button */}
-          <div className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-[#00ffcc]/30 flex items-center justify-center text-[#00ffcc] shadow-[0_0_20px_rgba(0,255,204,0.15)] hover:shadow-[0_0_30px_rgba(0,255,204,0.35)] hover:border-[#00ffcc]/60 hover:scale-110 transition-all duration-300 cursor-pointer">
-            <Mail size={20} />
-          </div>
-        </a>
+        {/* Floating Actions — right side */}
+        <div className="fixed right-5 top-1/2 -translate-y-1/2 z-[9999] flex flex-col gap-4">
+          {/* Floating Mail Button */}
+          <a
+            href="mailto:shailendraprbns@gmail.com"
+            title="Mail Me"
+            className="group flex items-center justify-end relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Tooltip */}
+            <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-[#00ffcc]/20 text-[#00ffcc] text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none shadow-lg">
+              Mail Me
+            </span>
+            {/* Button */}
+            <div className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-[#00ffcc]/30 flex items-center justify-center text-[#00ffcc] shadow-[0_0_20px_rgba(0,255,204,0.15)] hover:shadow-[0_0_30px_rgba(0,255,204,0.35)] hover:border-[#00ffcc]/60 hover:scale-110 transition-all duration-300 cursor-pointer">
+              <Mail size={20} />
+            </div>
+          </a>
+
+          {/* Floating GitHub Button */}
+          <a
+            href="https://github.com/Shailendra1122/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub"
+            className="group flex items-center justify-end relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Tooltip */}
+            <span className="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-slate-900/90 backdrop-blur-md border border-[#00ffcc]/20 text-[#00ffcc] text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none shadow-lg">
+              GitHub
+            </span>
+            {/* Button */}
+            <div className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-[#00ffcc]/30 flex items-center justify-center text-[#00ffcc] shadow-[0_0_20px_rgba(0,255,204,0.15)] hover:shadow-[0_0_30px_rgba(0,255,204,0.35)] hover:border-[#00ffcc]/60 hover:scale-110 transition-all duration-300 cursor-pointer">
+              <Github size={20} />
+            </div>
+          </a>
+        </div>
 
       </div>
 
