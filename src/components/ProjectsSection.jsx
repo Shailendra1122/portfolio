@@ -1,5 +1,19 @@
-import React from 'react';
-import { Github, ExternalLink, MessageSquare, ShieldAlert, Sprout, Share2, Ticket, Github as GithubIcon } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Github, ExternalLink, MessageSquare, ShieldAlert, Sprout, Share2, Ticket } from 'lucide-react';
+
+function useInView(threshold = 0.1) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect(); } },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, inView];
+}
 
 const PROJECTS_DATA = [
   {
@@ -11,8 +25,10 @@ const PROJECTS_DATA = [
     github: 'https://github.com/Shailendra1122/',
     live: 'https://jobquest-gqlq.onrender.com',
     icon: MessageSquare,
-    bannerColor: 'bg-emerald-500 text-white',
-    categoryColor: 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/20'
+    gradient: 'from-[#10B981] via-[#059669] to-[#065F46]',
+    accentColor: '#10B981',
+    categoryColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    featured: true,
   },
   {
     title: 'JPMorganChase Microservice',
@@ -23,8 +39,10 @@ const PROJECTS_DATA = [
     github: 'https://github.com/Shailendra1122/',
     live: null,
     icon: ShieldAlert,
-    bannerColor: 'bg-red-500 text-white',
-    categoryColor: 'bg-red-500/10 text-red-600 border border-red-500/20'
+    gradient: 'from-[#EF4444] via-[#DC2626] to-[#991B1B]',
+    accentColor: '#EF4444',
+    categoryColor: 'bg-red-500/10 text-red-400 border-red-500/20',
+    featured: false,
   },
   {
     title: 'KrishiSeva Agri-Tech',
@@ -35,20 +53,24 @@ const PROJECTS_DATA = [
     github: 'https://github.com/Shailendra1122/',
     live: 'https://krishiseva-blush.vercel.app',
     icon: Sprout,
-    bannerColor: 'bg-amber-500 text-white',
-    categoryColor: 'bg-amber-500/10 text-amber-600 border border-amber-500/20'
+    gradient: 'from-[#F59E0B] via-[#D97706] to-[#92400E]',
+    accentColor: '#F59E0B',
+    categoryColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+    featured: true,
   },
   {
     title: 'CoLab Connect Platform',
     displayName: 'CoLab Connect',
     category: 'Full Stack',
-    description: 'An open collaboration hub allowing users to publish projects, recruit members, and secure connections. Rest APIs handled by Express and MongoDB.',
+    description: 'An open collaboration hub allowing users to publish projects, recruit members, and secure connections. REST APIs handled by Express and MongoDB.',
     tech: ['JavaScript', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
     github: 'https://github.com/Shailendra1122/',
     live: null,
     icon: Share2,
-    bannerColor: 'bg-sky-500 text-white',
-    categoryColor: 'bg-sky-500/10 text-sky-600 border border-sky-500/20'
+    gradient: 'from-[#0EA5E9] via-[#0284C7] to-[#075985]',
+    accentColor: '#0EA5E9',
+    categoryColor: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
+    featured: false,
   },
   {
     title: 'BMS Booking System (1Stop)',
@@ -59,114 +81,151 @@ const PROJECTS_DATA = [
     github: 'https://github.com/Shailendra1122/',
     live: null,
     icon: Ticket,
-    bannerColor: 'bg-purple-500 text-white',
-    categoryColor: 'bg-purple-500/10 text-purple-600 border border-purple-500/20'
+    gradient: 'from-[#8B5CF6] via-[#7C3AED] to-[#5B21B6]',
+    accentColor: '#8B5CF6',
+    categoryColor: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+    featured: false,
   }
 ];
 
-export default function ProjectsSection() {
+function ProjectCard({ proj, delay, inView }) {
+  const [hovered, setHovered] = useState(false);
+  const ProjectIcon = proj.icon;
+
   return (
-    <section 
-      id="projects"
-      className="py-16 md:py-24 px-6 sm:px-12 w-full max-w-7xl mx-auto font-sans text-slate-600 relative select-text"
+    <div
+      className={`relative glass-card overflow-hidden flex flex-col group cursor-default transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      style={{ transitionDelay: `${delay}ms` }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      {/* Header */}
-      <div className="text-center mb-6 select-none">
+      {/* Featured Badge */}
+      {proj.featured && (
+        <div className="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-full bg-[#FF5F8F]/15 border border-[#FF5F8F]/30 text-[#FF5F8F] text-[9px] font-mono font-bold uppercase tracking-wider">
+          Featured
+        </div>
+      )}
+
+      {/* Gradient Banner */}
+      <div className={`relative h-36 bg-gradient-to-br ${proj.gradient} flex items-center justify-center overflow-hidden`}>
+        {/* Noise texture overlay */}
+        <div className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)`
+          }}
+        />
+        {/* Scan line effect on hover */}
+        <div
+          className="absolute inset-x-0 h-1 blur-sm opacity-30 transition-all duration-300"
+          style={{
+            background: 'rgba(255,255,255,0.5)',
+            top: hovered ? '100%' : '-10%',
+            transition: 'top 0.8s ease',
+          }}
+        />
+        <div className="relative z-10 flex flex-col items-center gap-2">
+          <ProjectIcon size={28} className="text-white/90" />
+          <span className="text-white font-black text-base uppercase tracking-wider drop-shadow-sm">
+            {proj.displayName}
+          </span>
+        </div>
+      </div>
+
+      {/* Card Body */}
+      <div className="p-5 flex flex-col flex-1 justify-between">
+        <div>
+          {/* Title & Category */}
+          <div className="flex items-start justify-between gap-2 mb-3">
+            <h3 className="font-bold text-sm text-white leading-snug">{proj.title}</h3>
+            <span className={`shrink-0 px-2 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider border ${proj.categoryColor}`}>
+              {proj.category}
+            </span>
+          </div>
+
+          {/* Description */}
+          <p className="text-slate-400 text-xs leading-relaxed mb-4">{proj.description}</p>
+
+          {/* Tech Tags */}
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {proj.tech.map((t) => (
+              <span key={t} className="tech-badge">{t}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Action Links */}
+        <div className="flex items-center gap-2 mt-auto">
+          <a
+            href={proj.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/[0.05] border border-white/[0.1] text-slate-300 hover:bg-white/[0.1] hover:text-white hover:border-white/20 text-[11px] font-semibold transition-all duration-200"
+          >
+            <Github size={13} />
+            Code
+          </a>
+          {proj.live ? (
+            <a
+              href={proj.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl btn-primary text-[11px] font-semibold"
+            >
+              <ExternalLink size={13} />
+              Live Demo
+            </a>
+          ) : (
+            <div className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.06] text-slate-600 text-[11px] font-semibold cursor-not-allowed">
+              Private Repo
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ProjectsSection() {
+  const [headerRef, headerInView] = useInView(0.1);
+  const [gridRef, gridInView] = useInView(0.05);
+
+  return (
+    <section
+      id="projects"
+      className="py-24 px-6 sm:px-12 w-full max-w-7xl mx-auto font-sans text-slate-300 relative"
+    >
+      {/* Section Header */}
+      <div
+        ref={headerRef}
+        className={`text-center mb-8 transition-all duration-700 ${headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      >
         <span className="section-capsule">What I've built</span>
-        <h2 className="text-2xl sm:text-3xl font-bold text-[#372e48]">Featured Projects</h2>
+        <h2 className="text-3xl sm:text-4xl font-black text-white mt-2">
+          Featured <span className="gradient-text">Projects</span>
+        </h2>
         <div className="section-underline" />
       </div>
 
-      {/* GitHub Callout button from screenshot 2 */}
-      <div className="flex justify-center mb-10 select-none">
-        <button
-          onClick={() => window.open('https://github.com/Shailendra1122/', '_blank')}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-pink to-brand-accent hover:opacity-90 text-white text-xs font-mono font-bold transition-all shadow-md"
+      {/* GitHub Callout */}
+      <div className={`flex justify-center mb-10 transition-all duration-700 ${headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '200ms' }}>
+        <a
+          href="https://github.com/Shailendra1122/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-6 py-3 rounded-xl glass-card text-sm font-bold text-slate-300 hover:text-white transition-all hover:border-[#FF5F8F]/30 hover:shadow-lg hover:shadow-[#FF5F8F]/10"
         >
-          <GithubIcon size={14} />
-          <span>View All Projects on GitHub</span>
-        </button>
+          <Github size={16} className="text-[#FF5F8F]" />
+          View All Projects on GitHub
+          <ExternalLink size={13} className="text-slate-500" />
+        </a>
       </div>
 
-      {/* Projects Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {PROJECTS_DATA.map((proj, idx) => {
-          const ProjectIcon = proj.icon;
-          return (
-            <div 
-              key={idx}
-              className="premium-card overflow-hidden flex flex-col justify-between"
-            >
-              <div>
-                {/* Colored Header Banner */}
-                <div className={`h-32 ${proj.bannerColor} flex items-center justify-center p-4 select-none relative`}>
-                  {/* Subtle vector lines design */}
-                  <div className="absolute inset-0 bg-white/5 opacity-20 pointer-events-none" />
-                  <span className="text-lg font-bold tracking-wide text-center drop-shadow-sm font-sans uppercase">
-                    {proj.displayName}
-                  </span>
-                </div>
-
-                {/* Card Body */}
-                <div className="p-5">
-                  {/* Title & Badge */}
-                  <div className="flex items-center justify-between gap-2.5 mb-3.5 select-none">
-                    <div className="flex items-center gap-1.5 text-[#372e48]">
-                      <ProjectIcon size={15} className="shrink-0" />
-                      <span className="font-bold text-xs truncate max-w-[130px] sm:max-w-[150px]">{proj.title}</span>
-                    </div>
-                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-mono font-semibold uppercase tracking-wider ${proj.categoryColor}`}>
-                      {proj.category}
-                    </span>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-slate-500 text-xs leading-relaxed mb-4">
-                    {proj.description}
-                  </p>
-
-                  {/* Tech tags list */}
-                  <div className="flex flex-wrap gap-1 mb-2 select-none">
-                    {proj.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2 py-0.5 rounded bg-white border border-[#f8e5db] text-slate-500 text-[9px] font-mono font-medium"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Links footer */}
-              <div className="p-5 pt-0 flex items-center gap-2 select-none">
-                <a
-                  href={proj.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg border border-[#f8e5db] bg-white hover:bg-slate-50 text-[#372e48] text-[10px] font-semibold transition-colors cursor-pointer"
-                >
-                  <Github size={12} />
-                  <span>Code</span>
-                </a>
-                
-                {proj.live && (
-                  <a
-                    href={proj.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg bg-brand-pink text-white hover:opacity-95 text-[10px] font-semibold transition-colors cursor-pointer"
-                  >
-                    <ExternalLink size={12} />
-                    <span>Live Demo</span>
-                  </a>
-                )}
-              </div>
-
-            </div>
-          );
-        })}
+      {/* Projects Grid */}
+      <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {PROJECTS_DATA.map((proj, idx) => (
+          <ProjectCard key={idx} proj={proj} delay={idx * 100} inView={gridInView} />
+        ))}
       </div>
     </section>
   );

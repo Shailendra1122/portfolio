@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
     { label: 'Home', id: 'home' },
@@ -16,8 +17,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
       const scrollPosition = window.scrollY + 200;
-      
       for (const item of navItems) {
         const el = document.getElementById(item.id);
         if (el) {
@@ -30,7 +31,6 @@ export default function Navbar() {
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -44,63 +44,83 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 w-full h-16 bg-white/70 backdrop-blur-md border-b border-[#f8e5db] z-[9999] px-6 sm:px-12 flex items-center justify-between font-sans select-none">
-      
-      {/* Brand Logo in Cyber-Pastel */}
-      <div 
+    <nav
+      style={{ position: 'fixed', top: 0, left: 0, right: 0 }}
+      className={`w-full z-[9999] px-6 sm:px-12 flex items-center justify-between font-sans select-none transition-all duration-300 ${
+        scrolled
+          ? 'h-14 bg-[#0F172A]/90 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20'
+          : 'h-16 bg-[#0F172A]/60 backdrop-blur-md'
+      }`}
+    >
+      {/* Brand Logo */}
+      <div
         onClick={() => handleScrollTo('home')}
-        className="text-base sm:text-lg font-bold tracking-tight text-[#372e48] cursor-pointer flex items-center gap-0.5"
+        className="text-base sm:text-lg font-bold tracking-tight cursor-pointer flex items-center gap-0.5"
       >
-        <span className="text-brand-pink">&lt;</span>
-        <span>ShailendraPratap</span>
-        <span className="text-brand-purple">/&gt;</span>
+        <span className="text-[#FF5F8F]">&lt;</span>
+        <span className="text-white">Shailendra</span>
+        <span className="text-[#8B5CF6]">/&gt;</span>
       </div>
 
-      {/* Desktop Links list */}
-      <div className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-slate-500">
+      {/* Desktop Nav Links */}
+      <div className="hidden md:flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider">
         {navItems.map((item) => (
           <button
             key={item.id}
             onClick={() => handleScrollTo(item.id)}
-            className={`transition-colors duration-250 cursor-pointer relative py-1 ${
-              activeSection === item.id 
-                ? 'text-[#372e48]' 
-                : 'hover:text-[#372e48] text-slate-400'
+            className={`px-4 py-2 rounded-lg transition-all duration-200 cursor-pointer relative ${
+              activeSection === item.id
+                ? 'text-white'
+                : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
             }`}
           >
-            <span>{item.label}</span>
+            {item.label}
             {activeSection === item.id && (
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-brand-pink to-brand-purple rounded-full" />
+              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-gradient-to-r from-[#FF5F8F] to-[#8B5CF6] rounded-full" />
             )}
           </button>
         ))}
       </div>
 
-      {/* Mobile Burger Menu Toggle */}
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden text-[#372e48] p-1.5 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
-        aria-label="Toggle menu"
-      >
-        {isOpen ? <X size={20} /> : <Menu size={20} />}
-      </button>
+      {/* CTA & Mobile Toggle */}
+      <div className="flex items-center gap-3">
+        <a
+          href="mailto:shailendraprbns@gmail.com"
+          className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider btn-primary"
+        >
+          Hire Me
+        </a>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.1] flex items-center justify-center text-white transition-colors hover:bg-white/[0.1] cursor-pointer"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </div>
 
-      {/* Mobile Nav Overlay Drawer */}
+      {/* Mobile Nav Drawer */}
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-[#fffcfb] border-b border-[#f8e5db] shadow-lg md:hidden flex flex-col p-4 space-y-3 font-semibold uppercase tracking-wider text-xs z-50 text-slate-500 animate-fade-slide-up">
+        <div className="absolute top-full left-0 w-full bg-[#0F172A]/95 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl md:hidden flex flex-col p-4 space-y-1 z-50 animate-fade-in-down">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleScrollTo(item.id)}
-              className={`text-left px-4 py-2.5 rounded-lg transition-all ${
-                activeSection === item.id 
-                  ? 'bg-gradient-to-r from-brand-peach to-transparent text-[#372e48] font-bold border-l-2 border-brand-pink' 
-                  : 'hover:bg-slate-50 text-slate-400'
+              className={`text-left px-4 py-3 rounded-xl transition-all text-sm font-semibold uppercase tracking-wider ${
+                activeSection === item.id
+                  ? 'bg-gradient-to-r from-[#FF5F8F]/10 to-[#8B5CF6]/10 text-white border border-[#FF5F8F]/20'
+                  : 'text-slate-400 hover:bg-white/[0.05] hover:text-white'
               }`}
             >
               {item.label}
             </button>
           ))}
+          <a
+            href="mailto:shailendraprbns@gmail.com"
+            className="mt-2 text-center px-4 py-3 rounded-xl btn-primary text-sm font-bold uppercase tracking-wider"
+          >
+            Hire Me
+          </a>
         </div>
       )}
     </nav>
