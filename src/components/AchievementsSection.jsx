@@ -30,12 +30,12 @@ const ACHIEVEMENTS_DATA = [
   {
     org: 'KIIT University DU',
     title: 'Top Tier Scholar',
-    description: 'Maintained a strong 7.1 CGPA in B.Tech Computer Science & Engineering, mastering Data Structures, Algorithms, DBMS, and OS.',
+    description: 'Maintained a strong 7.2 CGPA in B.Tech Computer Science & Engineering, mastering Data Structures, Algorithms, DBMS, and OS.',
     icon: Trophy,
     gradient: 'from-[#FF5F8F] to-[#F97316]',
     glowColor: 'rgba(255,95,143,0.25)',
     ringColor: 'border-[#FF5F8F]/30',
-    highlightText: '7.1 CGPA',
+    highlightText: '7.2 CGPA',
     highlightClass: 'bg-[#FF5F8F]/10 text-[#FF5F8F] border-[#FF5F8F]/25',
   },
   {
